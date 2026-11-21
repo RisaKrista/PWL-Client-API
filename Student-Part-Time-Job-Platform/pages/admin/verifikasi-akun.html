@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Verifikasi Akun · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-02" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link" href="../admin/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../admin/verifikasi-akun.html" aria-current="page">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link" href="../admin/moderasi-lowongan.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link" href="../admin/monitoring-eligibilitas.html">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link" href="../admin/perguruan-tinggi.html">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <h1>Verifikasi Akun</h1>
+              <p class="muted">Pengajuan verifikasi awal dan re-verifikasi per semester.</p>
+            </div>
+          </div>
+          <div data-view="content" class="panel panel--flush">
+            <div style="padding:0 16px">
+              <div class="tabs" role="tablist" id="vq-tabs">
+                <button type="button" class="tab" role="tab" data-filter="mahasiswa" data-label="Mahasiswa"
+                  aria-selected="true">Mahasiswa <span class="tab__count">0</span>
+                </button>
+                <button type="button" class="tab" role="tab" data-filter="employer" data-label="Employer"
+                  aria-selected="false">Employer <span class="tab__count">0</span>
+                </button>
+              </div>
+            </div>
+            <div class="row" style="padding:14px 16px 0">
+              <div class="input-prefix" style="flex:1;min-width:200px">
+                <span>
+                  <i data-lucide="search" aria-hidden="true"></i>
+                </span>
+                <input class="field__input" id="vq-q" type="search" placeholder="Cari nama atau email"
+                  aria-label="Cari nama atau email">
+              </div>
+              <select class="field__input" id="vq-status" style="width:auto" aria-label="Status pengajuan">
+                <option value="pending">Status: pending</option>
+                <option value="disetujui">Status: disetujui</option>
+                <option value="ditolak">Status: ditolak</option>
+                <option value="">Semua status</option>
+              </select>
+              <select class="field__input" id="vq-jenis" style="width:auto" aria-label="Jenis pengajuan">
+                <option value="">Semua jenis</option>
+                <option value="awal">Awal</option>
+                <option value="re_verifikasi">Re-verifikasi</option>
+              </select>
+            </div>
+            <div class="table-wrap" id="vq-table" style="margin-top:12px">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Asal</th>
+                    <th>Jenis</th>
+                    <th>Diajukan</th>
+                    <th>Menunggu</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="vq-rows"></tbody>
+              </table>
+            </div>
+            <div id="vq-empty" hidden>
+              <div class="empty-state">
+                <div class="empty-state__icon">
+                  <i data-lucide="circle-check" aria-hidden="true"></i>
+                </div>
+                <p class="empty-state__title">Tidak ada pengajuan verifikasi yang menunggu.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

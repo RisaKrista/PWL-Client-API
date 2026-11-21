@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Masuk · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/auth.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="UMM-02" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+      </div>
+    </header>
+    <main id="main" class="page page--narrow">
+      <div data-flash></div>
+      <div class="auth" style="min-height:auto;padding:0">
+        <div class="auth__card panel">
+          <div class="stack" style="gap:4px">
+            <h1>Masuk</h1>
+            <p class="muted small">Gunakan email yang terdaftar. Data di halaman ini fiktif.</p>
+          </div>
+          <div data-view="content" class="stack">
+            <div id="login-alert"></div>
+            <form id="form-masuk" class="form" data-validate>
+              <div class="field">
+                <label class="field__label" for="login-email">Email atau username <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="login-email" name="login-email" type="text" required
+                  autocomplete="username" placeholder="nama@widyatama.ac.id atau username admin">
+              </div>
+              <div class="field">
+                <label class="field__label" for="login-password">Kata sandi <span class="req" aria-hidden="true">*
+                  </span>
+                </label>
+                <input class="field__input" id="login-password" name="login-password" type="password" required
+                  minlength="8" autocomplete="current-password" data-msg-minlength="Kata sandi minimal 8 karakter.">
+              </div>
+              <button class="btn btn--primary btn--block" type="submit">Masuk</button>
+            </form>
+            <p class="xs muted">Mahasiswa &amp; Employer masuk dengan email; Admin dengan username (bawaan: admin / admin123). Akun Mahasiswa dan
+              Employer dibuat lewat halaman Daftar.</p>
+            <hr class="divider">
+            <div class="stack">
+              <span class="eyebrow">Masuk demo</span>
+              <div class="demo-logins">
+                <button type="button" class="btn btn--secondary btn--sm" data-demo-login="admin">
+                  <i data-lucide="shield-check" aria-hidden="true"></i>Admin
+                </button>
+              </div>
+            </div>
+            <p class="small">Belum punya akun? <a href="../umum/beranda.html">Daftar</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

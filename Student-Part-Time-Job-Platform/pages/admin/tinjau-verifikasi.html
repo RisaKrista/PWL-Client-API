@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Tinjau Verifikasi · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-03" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link" href="../admin/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../admin/verifikasi-akun.html" aria-current="page">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link" href="../admin/moderasi-lowongan.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link" href="../admin/monitoring-eligibilitas.html">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link" href="../admin/perguruan-tinggi.html">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <nav class="breadcrumb">
+                <a href="../admin/verifikasi-akun.html">Verifikasi Akun</a>
+                <span>/</span>
+                <span id="tv-crumb" aria-current="page"></span>
+              </nav>
+              <h1 id="tv-title"></h1>
+              <div class="badges" id="tv-badges"></div>
+            </div>
+          </div>
+          <div data-view="content" class="split split--half">
+            <div class="stack" style="gap:16px;min-width:0">
+              <section class="panel">
+                <h2>Data pengaju</h2>
+                <div id="tv-data"></div>
+              </section>
+              <section class="panel">
+                <h2>Keputusan</h2>
+                <form id="tv-form" class="form" data-validate>
+                  <div class="field">
+                    <span class="field__label">Daftar periksa</span>
+                    <div class="check-list" id="tv-checks"></div>
+                  </div>
+                  <div class="field">
+                    <span class="field__label">Keputusan <span class="req">*</span>
+                    </span>
+                    <div class="checks">
+                      <label class="chip-check">
+                        <input type="radio" name="keputusan" value="setujui" checked>
+                        <span>Setujui</span>
+                      </label>
+                      <label class="chip-check">
+                        <input type="radio" name="keputusan" value="tolak">
+                        <span>Tolak</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div id="tv-reason-wrap" hidden class="stack">
+                    <div class="field">
+                      <label class="field__label" for="tv-alasan">Alasan penolakan <span class="req" aria-hidden="true">
+                          *</span>
+                      </label>
+                      <select class="field__input" id="tv-alasan"></select>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="tv-catatan">Catatan</label>
+                      <textarea class="field__input" id="tv-catatan" maxlength="300" style="min-height:70px"></textarea>
+                      <p class="field__hint" id="tv-catatan-hint">Wajib bila alasan Lainnya. Tampil kepada pengguna.</p>
+                    </div>
+                  </div>
+                  <p class="small" id="tv-until" hidden>
+                    <i data-lucide="calendar-clock" aria-hidden="true"></i> Berlaku sampai <strong
+                      id="tv-until-val"></strong> (batas periode semester aktif)
+                  </p>
+                  <div id="tv-msg"></div>
+                  <div class="row" style="justify-content:flex-end">
+                    <a class="btn btn--ghost" href="../admin/verifikasi-akun.html">Kembali</a>
+                    <button class="btn btn--primary" type="submit" data-no-loading="1">Simpan keputusan</button>
+                  </div>
+                </form>
+              </section>
+            </div>
+            <section class="panel sticky" aria-labelledby="doc-t">
+              <h2 id="doc-t">Dokumen</h2>
+              <div class="tabs" id="tv-tabs" role="tablist"></div>
+              <div class="doc-viewer" id="doc-viewer"></div>
+              <p class="xs muted">
+                <i data-lucide="lock" aria-hidden="true"></i> Tidak dapat diunduh. Akses dokumen dicatat.
+              </p>
+            </section>
+          </div>
+          <dialog class="modal" id="modal-tv" aria-labelledby="tv-confirm-title">
+            <div class="modal__header">
+              <span class="modal__icon" id="tv-confirm-icon">
+                <i data-lucide="info" aria-hidden="true"></i>
+              </span>
+              <h2 id="tv-confirm-title" style="font-size:var(--text-lg);padding-top:8px"></h2>
+            </div>
+            <div class="modal__body">
+              <p id="tv-confirm-text"></p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--primary" id="tv-do">Simpan</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

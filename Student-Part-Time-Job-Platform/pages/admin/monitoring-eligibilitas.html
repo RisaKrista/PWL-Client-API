@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Monitoring Eligibilitas · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-05" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link" href="../admin/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../admin/verifikasi-akun.html">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link" href="../admin/moderasi-lowongan.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../admin/monitoring-eligibilitas.html" aria-current="page">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link" href="../admin/perguruan-tinggi.html">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <h1>Monitoring Eligibilitas</h1>
+              <p class="muted">Tanpa integrasi PDDikti/kampus: masa berlaku verifikasi mengikuti periode semester.</p>
+            </div>
+          </div>
+          <div data-view="content" class="stack" style="gap:20px">
+            <form id="form-periode" class="panel form" data-validate>
+              <div class="panel__head">
+                <h2>Periode semester aktif</h2>
+                <button class="btn btn--primary btn--sm" type="submit">Simpan periode</button>
+              </div>
+              <div class="grid-4">
+                <div class="field">
+                  <label class="field__label" for="pr-nama">Nama periode <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="pr-nama" name="pr-nama" type="text" required minlength="5"
+                    maxlength="50">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="pr-mulai">Tanggal mulai <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="pr-mulai" name="pr-mulai" type="date" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="pr-batas">Batas berlaku verifikasi <span class="req"
+                      aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="pr-batas" name="pr-batas" type="date" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="pr-hari">Hari pengingat <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="pr-hari" name="pr-hari" type="number" required min="1" max="30"
+                    data-msg-range="Hari pengingat antara 1 dan 30.">
+                </div>
+              </div>
+            </form>
+            <div class="grid-3" id="el-stats"></div>
+            <section class="panel panel--flush">
+              <div class="panel__head" style="padding:16px 20px 0">
+                <h2>Mahasiswa</h2>
+                <div class="row">
+                  <select class="field__input" id="el-filter" style="width:auto;min-height:36px" aria-label="Filter">
+                    <option value="semua">Semua</option>
+                    <option value="segera">Berakhir ≤ 14 hari</option>
+                    <option value="kedaluwarsa">Kedaluwarsa</option>
+                    <option value="pending">Pending</option>
+                    <option value="ditolak">Ditolak</option>
+                  </select>
+                  <button class="btn btn--secondary btn--sm" id="el-run" type="button">
+                    <i data-lucide="refresh-cw" aria-hidden="true"></i>Jalankan pemeriksaan kedaluwarsa
+                  </button>
+                </div>
+              </div>
+              <div id="el-result" style="padding:12px 20px 0"></div>
+              <div class="table-wrap" id="el-table">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Nama</th>
+                      <th>Perguruan tinggi</th>
+                      <th>Berlaku sampai</th>
+                      <th>Sisa</th>
+                      <th>Status akun</th>
+                      <th>Re-verifikasi</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="el-rows"></tbody>
+                </table>
+              </div>
+              <div id="el-empty" hidden>
+                <div class="empty-state">
+                  <p class="empty-state__title">Belum ada mahasiswa pada filter ini.</p>
+                </div>
+              </div>
+              <p class="xs muted" style="padding:12px 20px">Mockup: tombol pemeriksaan mensimulasikan job harian pada
+                tanggal 1 Maret 2027 (sehari setelah batas berlaku).</p>
+            </section>
+          </div>
+          <dialog class="modal" id="modal-cabut" aria-labelledby="cb-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--danger">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+              </span>
+              <h2 id="cb-t" style="font-size:var(--text-lg);padding-top:8px">Cabut verifikasi?</h2>
+            </div>
+            <div class="modal__body">
+              <p id="cabut-text"></p>
+              <div class="field">
+                <label class="field__label" for="cb-alasan">Alasan <span class="req">*</span>
+                </label>
+                <select class="field__input" id="cb-alasan">
+                  <option value="">Pilih alasan</option>
+                  <option>Status tidak aktif atau lulus</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--danger" id="do-cabut">Cabut verifikasi</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

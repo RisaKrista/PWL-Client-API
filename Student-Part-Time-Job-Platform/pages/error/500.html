@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Terjadi kesalahan · Student Part-Time Job Platform</title>
+    <!-- Path absolut: halaman ini juga dikirim server untuk URL apa pun yang tidak ditemukan -->
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="/assets/js/lucide.min.js"></script>
+  </head>
+  <body data-page="ERR-500" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="/pages/umum/beranda.html" aria-label="Student Part-Time Job Platform — beranda">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="/pages/umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="/pages/mahasiswa/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page page--narrow">
+      <div class="panel">
+        <div class="empty-state">
+          <div class="empty-state__icon"><i data-lucide="circle-alert" aria-hidden="true"></i></div>
+          <p class="empty-state__title">Terjadi kesalahan</p>
+          <p>Sistem sedang bermasalah. Coba lagi beberapa saat lagi.</p>
+          <div class="row">
+            <a class="btn btn--primary" id="err-kembali" href="/pages/umum/beranda.html">Kembali ke beranda</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      // ?kembali=/pages/... (dari aplikasi) → tombol kembali ke halaman awal akun
+      try {
+        var k = new URLSearchParams(location.search).get('kembali');
+        if (k && /^\/pages\/[a-z-]+\/[a-z-]+\.html$/.test(k)) document.getElementById('err-kembali').href = k;
+      } catch (e) {}
+      if (window.lucide) lucide.createIcons();
+    </script>
+  </body>
+</html>

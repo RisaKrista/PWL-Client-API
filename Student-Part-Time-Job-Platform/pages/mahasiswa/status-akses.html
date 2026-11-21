@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Status Akses · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-09" data-role="mahasiswa" data-states="reminder">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link" href="../mahasiswa/cari-lowongan.html">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link" href="../mahasiswa/lamaran-saya.html">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link" href="../mahasiswa/profil-availability.html">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/status-akses.html" aria-current="page">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <div class="page__head">
+        <div>
+          <h1>Status Akses</h1>
+          <p class="muted">Verifikasi status mahasiswa berlaku per semester (Semester Ganjil 2026/2027).</p>
+        </div>
+      </div>
+      <div data-view="content" class="stack" style="gap:20px">
+        <section class="panel" id="status-card" aria-live="polite"></section>
+        <section class="panel" id="reverif" hidden aria-labelledby="rv-t">
+          <div class="row row--between">
+            <div>
+              <h2 id="rv-t">Verifikasi ulang semester</h2>
+              <p class="small muted">Unggah bukti aktif untuk semester berikutnya. Admin meninjau sebelum akses
+                diperpanjang.</p>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="rv-fill">
+              <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+            </button>
+          </div>
+          <form id="form-reverif" class="form" data-validate>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field__label" for="rv-semester">Semester saat ini <span class="req" aria-hidden="true">*
+                  </span>
+                </label>
+                <input class="field__input" id="rv-semester" name="rv-semester" type="number" required min="1" max="14"
+                  data-msg-range="Semester harus antara 1 dan 14.">
+              </div>
+              <div class="field">
+                <label class="field__label" for="rv-jenis">Jenis bukti aktif <span class="req" aria-hidden="true">*
+                  </span>
+                </label>
+                <select class="field__input" id="rv-jenis" name="rv-jenis" required
+                  data-msg-required="Pilih jenis bukti aktif.">
+                  <option value="">Pilih jenis bukti</option>
+                  <option value="krs">KRS semester berjalan</option>
+                  <option value="surat">Surat keterangan aktif kuliah</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field__label">File bukti aktif <span class="req" aria-hidden="true">*</span>
+              </span>
+              <label class="dropzone" for="rv-bukti">
+                <i data-lucide="upload" aria-hidden="true"></i>
+                <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                <span class="xs muted">JPG, PNG, atau PDF · maks. 2 MB</span>
+                <input type="file" id="rv-bukti" name="rv-bukti" accept=".jpg,.jpeg,.png,.pdf" required
+                  aria-label="File bukti aktif">
+              </label>
+              <div class="dropzone__out"></div>
+              <button type="button" class="btn btn--ghost btn--sm" data-sample="surat-aktif-genap-2027.pdf"
+                style="justify-self:start">
+                <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh (surat-aktif-genap-2027.pdf)
+              </button>
+            </div>
+            <div class="field">
+              <label class="check">
+                <input type="checkbox" id="rv-asli" required
+                  data-msg-required="Pernyataan keaslian data wajib dicentang.">
+                <span>Saya menyatakan data dan dokumen yang diunggah benar dan milik saya sendiri.</span>
+              </label>
+            </div>
+            <div class="row" style="justify-content:flex-end">
+              <button class="btn btn--primary" type="submit">
+                <i data-lucide="send" aria-hidden="true"></i>Kirim re-verifikasi
+              </button>
+            </div>
+          </form>
+        </section>
+        <section class="panel panel--flush" aria-labelledby="hist-t">
+          <div style="padding:16px 20px 0">
+            <h2 id="hist-t">Riwayat verifikasi</h2>
+          </div>
+          <div class="table-wrap">
+            <table class="table table--stack">
+              <thead>
+                <tr>
+                  <th>Periode</th>
+                  <th>Jenis</th>
+                  <th>Diajukan</th>
+                  <th>Status</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody id="hist-rows"></tbody>
+            </table>
+          </div>
+          <p id="hist-empty" class="muted small" style="padding:16px 20px" hidden>Belum ada riwayat verifikasi.</p>
+        </section>
+        <p class="small muted">Ingin menghapus akun dan data Anda? <a href="#" onclick="return false">Ajukan penghapusan
+            akun</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

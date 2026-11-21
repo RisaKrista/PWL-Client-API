@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Student Part-Time Job Platform
+    </title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+      .ix {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding-block: 32px 72px;
+        padding-inline: 20px;
+        display: grid;
+        gap: 28px;
+        font-family: var(--font-sans);
+        color: var(--color-neutral-900);
+      }
+
+      body {
+        background: var(--color-neutral-50);
+      }
+
+      .ix-top {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 20px;
+        align-items: end;
+      }
+
+      .ix-top h1 {
+        font-size: var(--text-4xl);
+        line-height: 1.1;
+        letter-spacing: -.02em;
+      }
+
+      .ix-top p {
+        color: var(--color-neutral-600);
+        max-width: 62ch;
+        margin-top: 8px;
+      }
+
+      .ix-cols {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .ix-group {
+        background: var(--color-neutral-0);
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-lg);
+        padding: 6px 6px 8px;
+      }
+
+      .ix-group+.ix-group {
+        margin-top: 16px;
+      }
+
+      .ix-group h2 {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: var(--color-secondary-700);
+        padding: 12px 14px 6px;
+      }
+
+      .ix-group ul,
+      .ix-flows {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+      }
+
+      .ix-group a {
+        display: grid;
+        grid-template-columns: 70px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        padding: 9px 14px;
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .ix-group a:hover {
+        background: var(--color-primary-50);
+      }
+
+      .ix-id {
+        font: 600 12px var(--font-mono);
+        color: var(--color-primary-600);
+      }
+
+      .ix-name {
+        font-weight: 600;
+        font-size: var(--text-sm);
+      }
+
+      .ix-k {
+        font-size: 11px;
+        color: var(--color-neutral-600);
+        text-align: right;
+      }
+
+      .ix-flows {
+        gap: 10px;
+      }
+
+      .ix-flows a {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        padding: 14px;
+        background: var(--color-neutral-0);
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-lg);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .ix-flows a:hover {
+        border-color: var(--color-primary-200);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .ix-letter {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: var(--color-primary-600);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+
+      .ix-hint {
+        display: block;
+        font-size: var(--text-xs);
+        color: var(--color-neutral-600);
+        margin-top: 2px;
+      }
+
+      .ix-note {
+        background: var(--color-secondary-100);
+        color: #7A3608;
+        border-radius: var(--radius-lg);
+        padding: 14px 16px;
+        font-size: var(--text-sm);
+        display: grid;
+        gap: 4px;
+      }
+
+      .ix-side h2 {
+        font-size: var(--text-lg);
+        margin-bottom: 12px;
+      }
+
+      @media (max-width: 860px) {
+
+        .ix-cols,
+        .ix-top {
+          grid-template-columns: 1fr;
+        }
+
+        .ix-top h1 {
+          font-size: var(--text-3xl);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .ix-group a {
+          grid-template-columns: 62px minmax(0, 1fr);
+        }
+
+        .ix-k {
+          display: none;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="ix">
+      <header class="ix-top">
+        <div>
+          <span class="eyebrow">Clickable prototype · Pemrograman Web Lanjut</span>
+          <h1>
+            Student Part-Time Job Platform
+          </h1>
+          <p>
+            24 halaman sesuai Dokumen Spesifikasi Teknis, terhubung ke Student-Part-Time-Job-Api (MySQL). Status akun
+            mengikuti data di server. Tombol <strong>Demo</strong> di pojok kanan bawah setiap halaman memicu state
+            tampilan (empty, loading, error, akses ditolak).
+          </p>
+        </div>
+        <a class="btn btn--primary" href="pages/umum/beranda.html">
+          Mulai dari Beranda
+        </a>
+      </header>
+
+      <div class="ix-cols">
+        <div>
+          <section class="ix-group">
+            <h2>
+              Umum
+            </h2>
+            <ul>
+              <li>
+                <a href="pages/umum/beranda.html">
+                  <span class="ix-id">UMM-01</span>
+                  <span class="ix-name">Beranda</span>
+                  <span class="ix-k">K15</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/umum/masuk.html">
+                  <span class="ix-id">UMM-02</span>
+                  <span class="ix-name">Masuk</span>
+                  <span class="ix-k">UC1 pre. 2</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="ix-group">
+            <h2>
+              Mahasiswa
+            </h2>
+            <ul>
+              <li>
+                <a href="pages/mahasiswa/registrasi.html">
+                  <span class="ix-id">MHS-01</span>
+                  <span class="ix-name">Registrasi Mahasiswa</span>
+                  <span class="ix-k">K1</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/verifikasi-email.html">
+                  <span class="ix-id">MHS-02</span>
+                  <span class="ix-name">Verifikasi Email Kampus</span>
+                  <span class="ix-k">K1</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/verifikasi-status.html">
+                  <span class="ix-id">MHS-03</span>
+                  <span class="ix-name">Verifikasi Status Mahasiswa</span>
+                  <span class="ix-k">K1, K10, K12</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/cari-lowongan.html">
+                  <span class="ix-id">MHS-04</span>
+                  <span class="ix-name">Cari Lowongan</span>
+                  <span class="ix-k">K2, K3, K5, K14</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/detail-lowongan.html#L-001">
+                  <span class="ix-id">MHS-05</span>
+                  <span class="ix-name">Detail Lowongan</span>
+                  <span class="ix-k">K4, K5, K6, K14</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/formulir-lamaran.html#L-003">
+                  <span class="ix-id">MHS-06</span>
+                  <span class="ix-name">Formulir Lamaran</span>
+                  <span class="ix-k">K6</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/lamaran-saya.html">
+                  <span class="ix-id">MHS-07</span>
+                  <span class="ix-name">Lamaran Saya</span>
+                  <span class="ix-k">K6, K9</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/profil-availability.html">
+                  <span class="ix-id">MHS-08</span>
+                  <span class="ix-name">Profil & Availability</span>
+                  <span class="ix-k">K3, K12</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/mahasiswa/status-akses.html">
+                  <span class="ix-id">MHS-09</span>
+                  <span class="ix-name">Status Akses & Re-verifikasi</span>
+                  <span class="ix-k">K10, K12, K13</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="ix-group">
+            <h2>
+              Employer
+            </h2>
+            <ul>
+              <li>
+                <a href="pages/employer/registrasi.html">
+                  <span class="ix-id">EMP-01</span>
+                  <span class="ix-name">Registrasi Employer</span>
+                  <span class="ix-k">K7, K10</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/verifikasi-email.html">
+                  <span class="ix-id">EMP-01B</span>
+                  <span class="ix-name">Verifikasi Email Employer</span>
+                  <span class="ix-k">K10</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/verifikasi.html">
+                  <span class="ix-id">EMP-02</span>
+                  <span class="ix-name">Verifikasi Employer</span>
+                  <span class="ix-k">K10</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/dashboard.html">
+                  <span class="ix-id">EMP-03</span>
+                  <span class="ix-name">Dashboard Employer</span>
+                  <span class="ix-k">K7, K9, K10</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/formulir-lowongan.html">
+                  <span class="ix-id">EMP-04</span>
+                  <span class="ix-name">Formulir Lowongan (UC1)</span>
+                  <span class="ix-k">K7, K8, K14</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/lowongan-saya.html">
+                  <span class="ix-id">EMP-05</span>
+                  <span class="ix-name">Lowongan Saya</span>
+                  <span class="ix-k">K7, K9, K11</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/employer/kelola-pelamar.html#L-001">
+                  <span class="ix-id">EMP-06</span>
+                  <span class="ix-name">Kelola Pelamar</span>
+                  <span class="ix-k">K9, K12</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="ix-group">
+            <h2>
+              Admin
+            </h2>
+            <ul>
+              <li>
+                <a href="pages/admin/dashboard.html">
+                  <span class="ix-id">ADM-01</span>
+                  <span class="ix-name">Dashboard Admin</span>
+                  <span class="ix-k">K10, K11, K12</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/admin/verifikasi-akun.html">
+                  <span class="ix-id">ADM-02</span>
+                  <span class="ix-name">Antrean Verifikasi Akun</span>
+                  <span class="ix-k">K10, K12</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/admin/tinjau-verifikasi.html#V-003">
+                  <span class="ix-id">ADM-03</span>
+                  <span class="ix-name">Tinjau Verifikasi</span>
+                  <span class="ix-k">K10, K12, K13</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/admin/moderasi-lowongan.html">
+                  <span class="ix-id">ADM-04</span>
+                  <span class="ix-name">Moderasi Lowongan</span>
+                  <span class="ix-k">K5, K11, K14</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/admin/monitoring-eligibilitas.html">
+                  <span class="ix-id">ADM-05</span>
+                  <span class="ix-name">Monitoring Eligibilitas</span>
+                  <span class="ix-k">K12, K13</span>
+                </a>
+              </li>
+              <li>
+                <a href="pages/admin/perguruan-tinggi.html">
+                  <span class="ix-id">ADM-06</span>
+                  <span class="ix-name">Perguruan Tinggi</span>
+                  <span class="ix-k">K7</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <aside class="ix-side">
+          <h2>
+            Jalur presentasi (user flow a–g)
+          </h2>
+          <ol class="ix-flows">
+            <li>
+              <a href="pages/mahasiswa/registrasi.html">
+                <span class="ix-letter">a</span>
+                <span>
+                  <strong>Registrasi & verifikasi Mahasiswa</strong>
+                  <span class="ix-hint">Isi data contoh → kode OTP (console server) → unggah file contoh → status
+                    Pending</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/employer/registrasi.html">
+                <span class="ix-letter">b</span>
+                <span>
+                  <strong>Registrasi & verifikasi Employer</strong>
+                  <span class="ix-hint">Isi data contoh → kode OTP (console server) → dokumen → Dashboard Pending</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/mahasiswa/cari-lowongan.html">
+                <span class="ix-letter">c</span>
+                <span>
+                  <strong>Cari → filter → detail → lamar</strong>
+                  <span class="ix-hint">Matikan filter availability, buka Barista Akhir Pekan, lalu Lamar</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/employer/formulir-lowongan.html">
+                <span class="ix-letter">d</span>
+                <span>
+                  <strong>Buat lowongan (UC1, AF1, AF2)</strong>
+                  <span class="ix-hint">Klik Publikasikan kosong (AF1); set status Pending di panel Demo (AF2)</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/admin/verifikasi-akun.html">
+                <span class="ix-letter">e</span>
+                <span>
+                  <strong>Admin: verifikasi & moderasi</strong>
+                  <span class="ix-hint">Tinjau Fajar Hidayat; lalu Moderasi Lowongan</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/employer/kelola-pelamar.html#L-001">
+                <span class="ix-letter">f</span>
+                <span>
+                  <strong>Employer kelola pelamar</strong>
+                  <span class="ix-hint">Klik pelamar → Terima → nomor telepon tampil</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/admin/monitoring-eligibilitas.html">
+                <span class="ix-letter">g</span>
+                <span>
+                  <strong>Akses Mahasiswa berakhir</strong>
+                  <span class="ix-hint">Jalankan pemeriksaan → Mahasiswa yang lewat masa berlaku menjadi Kedaluwarsa</span>
+                </span>
+              </a>
+            </li>
+          </ol>
+
+          <div class="ix-note" style="margin-top:16px">
+            <strong>Akun Admin: username admin / admin123</strong>
+            <span>Data awal hanya berisi perguruan tinggi, periode, dan akun Admin; Mahasiswa dan Employer mendaftar sendiri. Kode OTP registrasi tampil di console server (dan di halaman
+              pada mode pengembangan). Tombol "Isi data contoh" mengisi formulir agar demo lebih cepat.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

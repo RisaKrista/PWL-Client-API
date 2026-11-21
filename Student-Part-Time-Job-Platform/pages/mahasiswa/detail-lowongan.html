@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Detail Lowongan · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-05" data-role="mahasiswa">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/cari-lowongan.html" aria-current="page">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link" href="../mahasiswa/lamaran-saya.html">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link" href="../mahasiswa/profil-availability.html">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link" href="../mahasiswa/status-akses.html">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../mahasiswa/cari-lowongan.html">Cari Lowongan</a>
+        <span aria-hidden="true">/</span>
+        <span id="crumb-pos" aria-current="page">Detail</span>
+      </nav>
+      <div class="alert alert--warning" data-show-status="pending">
+        <i data-lucide="clock" aria-hidden="true"></i>
+        <div>Akun Anda menunggu verifikasi Admin. Lamaran dapat dikirim setelah akun diverifikasi.</div>
+      </div>
+      <div data-view="content">
+        <div id="detail"></div>
+      </div>
+    </main>
+  </body>
+</html>

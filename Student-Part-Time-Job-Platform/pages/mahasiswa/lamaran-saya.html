@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Lamaran Saya · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-07" data-role="mahasiswa">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link" href="../mahasiswa/cari-lowongan.html">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/lamaran-saya.html" aria-current="page">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link" href="../mahasiswa/profil-availability.html">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link" href="../mahasiswa/status-akses.html">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <div class="page__head">
+        <div>
+          <h1>Lamaran Saya</h1>
+          <p class="muted">Status lamaran diperbarui oleh Employer.</p>
+        </div>
+        <a class="btn btn--secondary" href="../mahasiswa/cari-lowongan.html">
+          <i data-lucide="search" aria-hidden="true"></i>Cari lowongan
+        </a>
+      </div>
+      <div data-view="content" class="panel panel--flush">
+        <div style="padding:0 16px">
+          <div class="tabs" role="tablist" id="lm-tabs" data-tabs="#lm-table" data-empty="#lm-empty-tab">
+            <button type="button" class="tab" role="tab" data-filter="semua" data-label="Semua" aria-selected="true">
+              Semua <span class="tab__count">0</span>
+            </button>
+            <button type="button" class="tab" role="tab" data-filter="dikirim" data-label="Dikirim"
+              aria-selected="false">Dikirim <span class="tab__count">0</span>
+            </button>
+            <button type="button" class="tab" role="tab" data-filter="ditinjau" data-label="Ditinjau"
+              aria-selected="false">Ditinjau <span class="tab__count">0</span>
+            </button>
+            <button type="button" class="tab" role="tab" data-filter="diterima" data-label="Diterima"
+              aria-selected="false">Diterima <span class="tab__count">0</span>
+            </button>
+            <button type="button" class="tab" role="tab" data-filter="ditolak" data-label="Ditolak"
+              aria-selected="false">Ditolak <span class="tab__count">0</span>
+            </button>
+          </div>
+        </div>
+        <div class="table-wrap" id="lm-table">
+          <table class="table table--stack">
+            <thead>
+              <tr>
+                <th>Posisi</th>
+                <th>Employer</th>
+                <th>Dikirim</th>
+                <th>Status</th>
+                <th>
+                  <span class="sr-only">Aksi</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="lm-rows"></tbody>
+          </table>
+        </div>
+        <div id="lm-empty-tab" hidden>
+          <div class="empty-state">
+            <p class="empty-state__title">Tidak ada lamaran berstatus <span data-empty-label></span>
+            </p>
+          </div>
+        </div>
+        <div id="lm-empty-all" hidden>
+          <div class="empty-state">
+            <div class="empty-state__icon">
+              <i data-lucide="send" aria-hidden="true"></i>
+            </div>
+            <p class="empty-state__title">Belum ada lamaran</p>
+            <p>Belum ada lamaran. Mulai cari lowongan yang sesuai jadwal Anda.</p>
+            <div class="row">
+              <a class="btn btn--primary" href="../mahasiswa/cari-lowongan.html">Cari lowongan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

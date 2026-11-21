@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Registrasi Mahasiswa · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/auth.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-01" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="../umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="../mahasiswa/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page page--medium">
+      <div data-flash></div>
+      <div class="panel">
+        <ol class="stepper" aria-label="Langkah">
+          <li class="is-active" aria-current="step">
+            <span>Akun</span>
+          </li>
+          <li class="">
+            <span>Verifikasi email</span>
+          </li>
+          <li class="">
+            <span>Data & dokumen</span>
+          </li>
+          <li class="">
+            <span>Tinjauan Admin</span>
+          </li>
+        </ol>
+        <div class="row row--between">
+          <div class="stack" style="gap:4px">
+            <h1>Daftar sebagai Mahasiswa</h1>
+            <p class="muted small">Khusus mahasiswa aktif D3, D4, dan S1. <span class="req">*</span> wajib diisi.</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm" id="reg-fill">
+            <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+          </button>
+        </div>
+        <div data-view="content">
+          <form id="form-reg" class="form" data-validate>
+            <div class="field">
+              <label class="field__label" for="reg-nama">Nama lengkap <span class="req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__input" id="reg-nama" name="reg-nama" type="text" required minlength="3"
+                maxlength="100" autocomplete="name" placeholder="Sesuai KTM">
+            </div>
+            <div class="field">
+              <label class="field__label" for="reg-pt">Perguruan tinggi <span class="req" aria-hidden="true">*</span>
+              </label>
+              <select class="field__input" id="reg-pt" name="reg-pt" required
+                data-msg-required="Pilih perguruan tinggi.">
+                <option value="">Pilih perguruan tinggi</option>
+              </select>
+              <p class="field__hint" id="reg-pt-hint">Perguruan tinggi Anda belum terdaftar? Hubungi Admin melalui
+                halaman Bantuan.</p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="reg-email">Email kampus <span class="req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__input" id="reg-email" name="reg-email" type="email" required autocomplete="email"
+                placeholder="nama@widyatama.ac.id" aria-describedby="reg-email-hint">
+              <p class="field__hint" id="reg-email-hint">Gunakan email kampus. Email pribadi tidak diterima.</p>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field__label" for="reg-password">Kata sandi <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="reg-password" name="reg-password" type="password" required minlength="8"
+                  autocomplete="new-password"
+                  data-msg-minlength="Kata sandi minimal 8 karakter dan memuat huruf serta angka.">
+                <p class="field__hint" id="reg-password-hint">Minimal 8 karakter, memuat huruf dan angka.</p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="reg-password2">Konfirmasi kata sandi <span class="req"
+                    aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="reg-password2" name="reg-password2" type="password" required
+                  autocomplete="new-password" data-match="reg-password"
+                  data-msg-match="Konfirmasi kata sandi tidak sama.">
+              </div>
+            </div>
+            <div class="field">
+              <label class="check">
+                <input type="checkbox" id="reg-consent" name="reg-consent" required
+                  data-msg-required="Persetujuan pemrosesan data wajib dicentang untuk melanjutkan.">
+                <span>Saya menyetujui pemrosesan data pribadi sesuai <a href="#" onclick="return false">Kebijakan
+                    Privasi</a>.</span>
+              </label>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit">Daftar</button>
+            <p class="small">Sudah punya akun? <a href="../umum/masuk.html">Masuk</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Buat Lowongan · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/employer.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-04" data-role="employer">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Employer">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Employer</span>
+        <a class="sidebar__link" href="../employer/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../employer/lowongan-saya.html">
+          <i data-lucide="list" aria-hidden="true"></i>Lowongan Saya
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../employer/formulir-lowongan.html" aria-current="page">
+          <i data-lucide="plus" aria-hidden="true"></i>Buat Lowongan
+        </a>
+        <a class="sidebar__link" href="../employer/kelola-pelamar.html#L-001">
+          <i data-lucide="users" aria-hidden="true"></i>Kelola Pelamar
+        </a>
+        <a class="sidebar__link" href="../employer/verifikasi.html">
+          <i data-lucide="shield-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">LC</span>
+            <div class="user-chip__meta">Lulu Chandra<span>Bimbel Cerdas Prima</span>
+            </div>
+          </div>
+          <span data-me-status></span>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <nav class="breadcrumb">
+                <a href="../employer/lowongan-saya.html">Lowongan Saya</a>
+                <span>/</span>
+                <span aria-current="page">Formulir</span>
+              </nav>
+              <h1 id="lw-heading">Buat Lowongan</h1>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="lw-fill">
+              <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+            </button>
+          </div>
+          <div class="alert alert--info" data-show-status="pending ditolak">
+            <i data-lucide="info" aria-hidden="true"></i>
+            <div>Akun belum terverifikasi. Lowongan dapat disimpan sebagai draft, tetapi publikasi memerlukan
+              verifikasi. <a href="../employer/verifikasi.html">Lihat status verifikasi</a>
+            </div>
+          </div>
+          <div class="alert alert--warning" id="lw-edit-note" hidden>
+            <i data-lucide="triangle-alert" aria-hidden="true"></i>
+            <div>Lowongan ini sedang publik. Perubahan akan ditinjau ulang oleh Admin sebelum tampil kembali.</div>
+          </div>
+          <div data-view="content">
+            <form id="form-lowongan" class="split" data-validate>
+              <div class="panel form" style="min-width:0">
+                <div data-summary hidden
+                  data-title="Lowongan belum dapat dipublikasikan. Lengkapi {n} informasi wajib berikut:"></div>
+                <section class="form__section">
+                  <h2 class="form__section-title">A. Posisi & job desk <small>US3 AC 1</small></h2>
+                  <div class="field">
+                    <label class="field__label" for="lw-posisi" data-name="Posisi">Posisi <span class="req"
+                        aria-hidden="true">*</span>
+                    </label>
+                    <input class="field__input" id="lw-posisi" name="lw-posisi" type="text" required minlength="5"
+                      maxlength="80" placeholder="Contoh: Tutor Matematika SMP">
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="lw-jobdesk" data-name="Job desk">Job desk <span class="req">*
+                      </span>
+                    </label>
+                    <textarea class="field__input" id="lw-jobdesk" required minlength="50" maxlength="2000" data-counter placeholder="Satu tugas per baris"></textarea>
+                  </div>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">B. Jenis & sistem kerja <small>US2 AC 7</small></h2>
+                  <div class="grid-2">
+                    <div class="field">
+                      <span class="field__label" data-name="Jenis kerja">Jenis kerja <span class="req">*</span>
+                      </span>
+                      <div class="checks" data-group-required data-msg="Pilih jenis kerja.">
+                        <label class="chip-check">
+                          <input type="radio" name="jenis" value="part_time">
+                          <span>Part-time</span>
+                        </label>
+                        <label class="chip-check">
+                          <input type="radio" name="jenis" value="freelance_proyek">
+                          <span>Freelance-proyek</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <span class="field__label" data-name="Sistem kerja">Sistem kerja <span class="req">*</span>
+                      </span>
+                      <div class="checks" data-group-required data-msg="Pilih sistem kerja.">
+                        <label class="chip-check">
+                          <input type="radio" name="sistem" value="onsite">
+                          <span>On-site</span>
+                        </label>
+                        <label class="chip-check">
+                          <input type="radio" name="sistem" value="hybrid">
+                          <span>Hybrid</span>
+                        </label>
+                        <label class="chip-check">
+                          <input type="radio" name="sistem" value="remote">
+                          <span>Remote</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">C. Lokasi <small>US3 AC 2</small></h2>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label class="field__label" for="lw-kota" data-name="Kota">Kota <span class="req"
+                          aria-hidden="true">*</span>
+                      </label>
+                      <select class="field__input" id="lw-kota" name="lw-kota" required data-msg-required="Pilih kota.">
+                        <option value="">Pilih kota</option>
+<option value="Bandung">Bandung</option>
+<option value="Cimahi">Cimahi</option>
+<option value="Jakarta">Jakarta</option>
+<option value="Bekasi">Bekasi</option>
+<option value="Bogor">Bogor</option>
+<option value="Depok">Depok</option>
+<option value="Tangerang">Tangerang</option>
+<option value="Surabaya">Surabaya</option>
+<option value="Yogyakarta">Yogyakarta</option>
+<option value="Semarang">Semarang</option>
+                      </select>
+                      <p class="field__hint" id="lw-kota-hint">Untuk Remote, isi kota domisili Employer.</p>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="lw-alamat" data-name="Alamat/area kerja">Alamat/area kerja <span
+                          class="req" id="lw-alamat-req">*</span>
+                      </label>
+                      <input class="field__input" id="lw-alamat" name="lw-alamat" type="text" minlength="5"
+                        maxlength="150" placeholder="Jalan, kecamatan">
+                      <p class="field__hint">Wajib untuk On-site dan Hybrid.</p>
+                    </div>
+                  </div>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">D. Jadwal kerja <small>US3 AC 3</small></h2>
+                  <p class="small muted">Pilih slot kerja. Grid sama dengan availability mahasiswa agar bisa dicocokkan.
+                  </p>
+                  <div class="field">
+                    <span class="field__label" data-name="Jadwal kerja">Slot jadwal <span class="req">*</span>
+                    </span>
+                    <div id="jadwal-group" data-group-required
+                      data-msg="Pilih minimal satu slot jadwal atau centang Jadwal fleksibel.">
+                      <div id="jadwal-grid"></div>
+                    </div>
+                  </div>
+                  <label class="check">
+                    <input type="checkbox" id="lw-fleksibel">
+                    <span><strong>Jadwal fleksibel</strong> — pekerja mengatur jam sendiri (umumnya proyek remote).
+                    </span>
+                  </label>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">E. Durasi & beban kerja <small>US3 AC 4–5</small></h2>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label class="field__label" for="lw-durasi" data-name="Durasi pekerjaan">Durasi pekerjaan <span
+                          class="req">*</span>
+                      </label>
+                      <div class="input-group">
+                        <input class="field__input" id="lw-durasi" name="lw-durasi" type="number" required min="1"
+                          max="180" data-msg-range="Durasi harus lebih dari 0.">
+                        <select class="field__input" id="lw-durasi-sat" aria-label="Satuan durasi">
+                          <option value="hari">hari</option>
+                          <option value="minggu">minggu</option>
+                          <option value="bulan" selected>bulan</option>
+                        </select>
+                      </div>
+                      <p class="field__hint">Maksimal 6 bulan.</p>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="lw-beban" data-name="Beban kerja">Beban kerja (jam/minggu) <span
+                          class="req" aria-hidden="true">*</span>
+                      </label>
+                      <input class="field__input" id="lw-beban" name="lw-beban" type="number" required min="1" max="40"
+                        data-msg-range="Beban kerja harus antara 1 dan 40 jam/minggu.">
+                      <p class="field__hint" id="lw-beban-hint">Tidak boleh melebihi total jam slot terpilih.</p>
+                    </div>
+                  </div>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">F. Gaji/upah <small>US3 AC 6</small></h2>
+                  <div class="grid-3">
+                    <div class="field">
+                      <label class="field__label" for="lw-gmin" data-name="Gaji minimum">Gaji minimum <span class="req">
+                          *</span>
+                      </label>
+                      <div class="input-prefix">
+                        <span>Rp</span>
+                        <input class="field__input" id="lw-gmin" name="lw-gmin" type="number" required min="1000"
+                          max="100000000" data-msg-range="Gaji harus angka Rupiah yang wajar." placeholder="50000">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="lw-gmax">Gaji maksimum</label>
+                      <div class="input-prefix">
+                        <span>Rp</span>
+                        <input class="field__input" id="lw-gmax" name="lw-gmax" type="number" min="0"
+                          placeholder="Opsional">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="lw-satuan" data-name="Satuan gaji">Satuan gaji <span class="req"
+                          aria-hidden="true">*</span>
+                      </label>
+                      <select class="field__input" id="lw-satuan" name="lw-satuan" required>
+                        <option value="jam">per jam</option>
+                        <option value="hari">per hari</option>
+                        <option value="bulan">per bulan</option>
+                        <option value="proyek">per proyek</option>
+                      </select>
+                    </div>
+                  </div>
+                  <p class="xs muted">Gaji wajib berupa angka. Teks seperti "nego" tidak diterima agar lowongan mudah
+                    dibandingkan.</p>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">G. Kriteria kandidat <small>US3 AC 7</small></h2>
+                  <div class="field">
+                    <label class="field__label" for="lw-kriteria" data-name="Kriteria kandidat">Kriteria kandidat <span
+                        class="req">*</span>
+                    </label>
+                    <textarea class="field__input" id="lw-kriteria" required minlength="20" maxlength="1000" data-counter placeholder="Satu kriteria per baris"></textarea>
+                  </div>
+                  <fieldset class="field" style="border:0;padding:0;margin:0">
+                    <legend class="field__label" style="margin-bottom:6px">Jenjang yang diterima <span class="xs muted">
+                        (kosong = semua)</span>
+                    </legend>
+                    <div class="checks">
+                      <label class="check">
+                        <input type="checkbox" name="jenjang" value="D3"> D3
+                      </label>
+                      <label class="check">
+                        <input type="checkbox" name="jenjang" value="D4"> D4
+                      </label>
+                      <label class="check">
+                        <input type="checkbox" name="jenjang" value="S1"> S1
+                      </label>
+                    </div>
+                  </fieldset>
+                </section>
+                <section class="form__section">
+                  <h2 class="form__section-title">H. Batas lamaran</h2>
+                  <div class="field">
+                    <label class="field__label" for="lw-batas" data-name="Batas lamaran">Batas lamaran <span class="req"
+                        aria-hidden="true">*</span>
+                    </label>
+                    <input class="field__input" id="lw-batas" name="lw-batas" type="date" required>
+                    <p class="field__hint" id="lw-batas-hint">Paling cepat besok, paling lambat 60 hari dari hari ini.
+                    </p>
+                  </div>
+                </section>
+                <div class="row"
+                  style="justify-content:flex-end;border-top:1px solid var(--color-neutral-200);padding-top:16px">
+                  <a class="btn btn--ghost" href="../employer/dashboard.html">Batal</a>
+                  <button class="btn btn--secondary" type="submit" data-action="draft">
+                    <i data-lucide="file-pen" aria-hidden="true"></i>Simpan draft
+                  </button>
+                  <button class="btn btn--primary" type="submit" data-action="submit" id="lw-publish">
+                    <i data-lucide="send" aria-hidden="true"></i>Publikasikan
+                  </button>
+                </div>
+              </div>
+              <aside class="stack sticky" style="gap:10px">
+                <span class="eyebrow">Pratinjau card</span>
+                <div id="lw-preview"></div>
+                <p class="xs muted">Tampilan ini sama dengan card di hasil pencarian mahasiswa (format K14).</p>
+              </aside>
+            </form>
+          </div>
+          <dialog class="modal" id="modal-af2" aria-labelledby="modal-af2-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--danger">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+              </span>
+              <h2 id="modal-af2-t" style="font-size:var(--text-lg);padding-top:8px">Publikasi ditolak</h2>
+            </div>
+            <div class="modal__body">
+              <p>Akun Employer Anda belum terverifikasi. Lowongan telah disimpan sebagai draft. Selesaikan proses
+                verifikasi untuk mempublikasikannya.</p>
+            </div>
+            <div class="modal__footer">
+              <a class="btn btn--ghost" href="../employer/lowongan-saya.html#draft">Lihat draft</a>
+              <a class="btn btn--primary" href="../employer/verifikasi.html">Selesaikan verifikasi</a>
+            </div>
+          </dialog>
+          <dialog class="modal" id="modal-edit-publik" aria-labelledby="modal-edit-publik-t">
+            <div class="modal__header">
+              <span class="modal__icon">
+                <i data-lucide="info" aria-hidden="true"></i>
+              </span>
+              <h2 id="modal-edit-publik-t" style="font-size:var(--text-lg);padding-top:8px">Kirim ulang untuk moderasi?
+              </h2>
+            </div>
+            <div class="modal__body">
+              <p>Perubahan pada lowongan yang sudah publik akan ditinjau ulang oleh Admin sebelum tampil kembali.
+                Lanjutkan?</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--primary" id="confirm-edit">Lanjutkan</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

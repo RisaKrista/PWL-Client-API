@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Moderasi Lowongan · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-04" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link" href="../admin/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../admin/verifikasi-akun.html">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../admin/moderasi-lowongan.html" aria-current="page">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link" href="../admin/monitoring-eligibilitas.html">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link" href="../admin/perguruan-tinggi.html">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <h1>Moderasi Lowongan</h1>
+              <p class="muted">Lowongan tampil kepada mahasiswa hanya setelah disetujui.</p>
+            </div>
+          </div>
+          <div data-view="content" class="stack" style="gap:16px">
+            <div class="tabs" role="tablist" id="md-tabs">
+              <button type="button" class="tab" role="tab" data-filter="menunggu_moderasi"
+                data-label="Menunggu moderasi" aria-selected="true">Menunggu moderasi <span class="tab__count">0</span>
+              </button>
+              <button type="button" class="tab" role="tab" data-filter="publik" data-label="Publik"
+                aria-selected="false">Publik <span class="tab__count">0</span>
+              </button>
+              <button type="button" class="tab" role="tab" data-filter="ditolak" data-label="Ditolak"
+                aria-selected="false">Ditolak <span class="tab__count">0</span>
+              </button>
+            </div>
+            <div class="split split--list">
+              <nav class="panel" id="md-list" aria-label="Daftar lowongan" style="gap:6px;padding:10px"></nav>
+              <div id="md-panel" style="min-width:0"></div>
+            </div>
+          </div>
+          <dialog class="modal" id="modal-md-close" aria-labelledby="mdc-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--danger">
+                <i data-lucide="lock" aria-hidden="true"></i>
+              </span>
+              <h2 id="mdc-t" style="font-size:var(--text-lg);padding-top:8px">Tutup lowongan publik?</h2>
+            </div>
+            <div class="modal__body">
+              <p>Lowongan tidak lagi tampil kepada mahasiswa.</p>
+              <div class="field">
+                <label class="field__label" for="md-close-alasan">Alasan <span class="req">*</span>
+                </label>
+                <select class="field__input" id="md-close-alasan">
+                  <option value="">Pilih alasan</option>
+                  <option>Indikasi penipuan atau meminta biaya</option>
+                  <option>Di luar lingkup platform</option>
+                  <option>Konten tidak pantas</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--danger" id="md-close-do">Tutup lowongan</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

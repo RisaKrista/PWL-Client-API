@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Dashboard Employer · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/employer.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-03" data-role="employer">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Employer">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Employer</span>
+        <a class="sidebar__link sidebar__link--active" href="../employer/dashboard.html" aria-current="page">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../employer/lowongan-saya.html">
+          <i data-lucide="list" aria-hidden="true"></i>Lowongan Saya
+        </a>
+        <a class="sidebar__link" href="../employer/formulir-lowongan.html">
+          <i data-lucide="plus" aria-hidden="true"></i>Buat Lowongan
+        </a>
+        <a class="sidebar__link" href="../employer/kelola-pelamar.html#L-001">
+          <i data-lucide="users" aria-hidden="true"></i>Kelola Pelamar
+        </a>
+        <a class="sidebar__link" href="../employer/verifikasi.html">
+          <i data-lucide="shield-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">LC</span>
+            <div class="user-chip__meta">Lulu Chandra<span>Bimbel Cerdas Prima</span>
+            </div>
+          </div>
+          <span data-me-status></span>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="alert alert--warning" data-show-status="pending">
+            <i data-lucide="clock" aria-hidden="true"></i>
+            <div>Akun Anda menunggu verifikasi Admin. Lowongan dapat disimpan sebagai draft, tetapi belum dapat
+              dipublikasikan.</div>
+          </div>
+          <div class="alert alert--error" data-show-status="ditolak">
+            <i data-lucide="circle-x" aria-hidden="true"></i>
+            <div>Verifikasi akun ditolak. Lihat alasan dan ajukan ulang di halaman Verifikasi Akun.</div>
+            <a class="btn btn--sm btn--secondary" href="../employer/verifikasi.html">Verifikasi Akun</a>
+          </div>
+          <div class="page__head">
+            <div>
+              <span class="eyebrow">Bimbel Cerdas Prima</span>
+              <h1>Dashboard</h1>
+            </div>
+            <a class="btn btn--primary" href="../employer/formulir-lowongan.html">
+              <i data-lucide="plus" aria-hidden="true"></i>Buat Lowongan
+            </a>
+          </div>
+          <div data-view="content" class="stack" style="gap:20px">
+            <div class="grid-4" id="emp-stats"></div>
+            <section class="panel panel--flush">
+              <div class="panel__head" style="padding:16px 20px 0">
+                <h2>Lowongan terbaru</h2>
+                <a class="small" href="../employer/lowongan-saya.html">Lihat semua</a>
+              </div>
+              <div class="table-wrap" id="emp-recent-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Posisi</th>
+                      <th>Status</th>
+                      <th>Pelamar</th>
+                      <th>Batas</th>
+                      <th>
+                        <span class="sr-only">Aksi</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="emp-recent"></tbody>
+                </table>
+              </div>
+              <div id="emp-empty" hidden>
+                <div class="empty-state">
+                  <div class="empty-state__icon">
+                    <i data-lucide="list" aria-hidden="true"></i>
+                  </div>
+                  <p class="empty-state__title">Belum ada lowongan</p>
+                  <p>Belum ada lowongan. Buat lowongan pertama Anda.</p>
+                  <div class="row">
+                    <a class="btn btn--primary" href="../employer/formulir-lowongan.html">Buat Lowongan</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

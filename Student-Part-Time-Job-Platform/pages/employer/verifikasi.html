@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Verifikasi Employer · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/employer.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-02" data-role="employer">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Employer">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Employer</span>
+        <a class="sidebar__link" href="../employer/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../employer/lowongan-saya.html">
+          <i data-lucide="list" aria-hidden="true"></i>Lowongan Saya
+        </a>
+        <a class="sidebar__link" href="../employer/formulir-lowongan.html">
+          <i data-lucide="plus" aria-hidden="true"></i>Buat Lowongan
+        </a>
+        <a class="sidebar__link" href="../employer/kelola-pelamar.html#L-001">
+          <i data-lucide="users" aria-hidden="true"></i>Kelola Pelamar
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../employer/verifikasi.html" aria-current="page">
+          <i data-lucide="shield-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">LC</span>
+            <div class="user-chip__meta">Lulu Chandra<span>Bimbel Cerdas Prima</span>
+            </div>
+          </div>
+          <span data-me-status></span>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div id="emp-stepper" class="panel" hidden>
+            <ol class="stepper" aria-label="Langkah">
+              <li class="is-done">
+                <span>Akun</span>
+              </li>
+              <li class="is-done">
+                <span>Verifikasi email</span>
+              </li>
+              <li class="is-active" aria-current="step">
+                <span>Dokumen</span>
+              </li>
+              <li class="">
+                <span>Tinjauan Admin</span>
+              </li>
+            </ol>
+          </div>
+          <div class="page__head">
+            <div>
+              <h1>Verifikasi Akun</h1>
+              <p class="muted">Lowongan hanya dapat dipublikasikan oleh Employer yang terverifikasi.</p>
+            </div>
+          </div>
+          <div data-view="content" class="stack" style="gap:20px">
+            <section class="panel" id="emp-status"></section>
+            <section class="panel" id="emp-doc-panel">
+              <div class="row row--between">
+                <div>
+                  <h2>Dokumen verifikasi</h2>
+                  <p class="small muted">Tipe Employer: <strong id="ed-tipe">Perusahaan</strong></p>
+                </div>
+                <button type="button" class="btn btn--ghost btn--sm" id="ed-fill">
+                  <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+                </button>
+              </div>
+              <div class="alert alert--info">
+                <i data-lucide="info" aria-hidden="true"></i>
+                <div>Lowongan dapat disusun sebagai draft sebelum akun terverifikasi, tetapi tidak dapat dipublikasikan.
+                </div>
+              </div>
+              <form id="form-emp-doc" class="form" data-validate>
+                <div class="grid-2">
+                  <div data-for-badan>
+                    <div class="field">
+                      <label class="field__label" for="ed-nib">NIB (Nomor Induk Berusaha) <span class="req"
+                          aria-hidden="true">*</span>
+                      </label>
+                      <input class="field__input" id="ed-nib" name="ed-nib" type="text" required inputmode="numeric"
+                        data-pattern="^\d{13}$" data-msg-pattern="NIB harus terdiri atas 13 digit angka.">
+                      <p class="field__hint" id="ed-nib-hint">13 digit angka (format perlu dicek ke ketentuan OSS).</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="ed-web">Situs web/media sosial</label>
+                    <input class="field__input" id="ed-web" name="ed-web" type="url" placeholder="https://">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="ed-alamat">Alamat usaha <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <textarea class="field__input" id="ed-alamat" required minlength="10" maxlength="300" style="min-height:80px"></textarea>
+                </div>
+                <div class="grid-2">
+                  <div data-for-badan>
+                    <div class="field">
+                      <span class="field__label">Dokumen legalitas (NIB/akta/surat keterangan usaha) <span class="req"
+                          aria-hidden="true">*</span>
+                      </span>
+                      <label class="dropzone" for="ed-legal">
+                        <i data-lucide="upload" aria-hidden="true"></i>
+                        <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                        <span class="xs muted">JPG, PNG, atau PDF · maks. 2 MB</span>
+                        <input type="file" id="ed-legal" name="ed-legal" accept=".jpg,.jpeg,.png,.pdf" required
+                          aria-label="Dokumen legalitas (NIB/akta/surat keterangan usaha)">
+                      </label>
+                      <div class="dropzone__out"></div>
+                      <button type="button" class="btn btn--ghost btn--sm" data-sample="nib-bimbel-cerdas.pdf"
+                        style="justify-self:start">
+                        <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh (nib-bimbel-cerdas.pdf)
+                      </button>
+                    </div>
+                  </div>
+                  <div data-for-perorangan hidden>
+                    <div class="field">
+                      <span class="field__label">Dokumen identitas penanggung jawab <span class="req"
+                          aria-hidden="true">*</span>
+                      </span>
+                      <label class="dropzone" for="ed-identitas">
+                        <i data-lucide="upload" aria-hidden="true"></i>
+                        <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                        <span class="xs muted">JPG/PDF · maks. 2 MB · disarankan diberi watermark</span>
+                        <input type="file" id="ed-identitas" name="ed-identitas" accept=".jpg,.jpeg,.png,.pdf" required
+                          aria-label="Dokumen identitas penanggung jawab">
+                      </label>
+                      <div class="dropzone__out"></div>
+                      <button type="button" class="btn btn--ghost btn--sm" data-sample="identitas-penanggung-jawab.jpg"
+                        style="justify-self:start">
+                        <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh
+                        (identitas-penanggung-jawab.jpg)
+                      </button>
+                    </div>
+                  </div>
+                  <div data-for-perorangan hidden>
+                    <div class="field">
+                      <label class="field__label" for="ed-deskripsi">Deskripsi kebutuhan</label>
+                      <textarea class="field__input" id="ed-deskripsi" maxlength="300" style="min-height:80px"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="justify-content:flex-end">
+                  <a class="btn btn--ghost" href="../employer/dashboard.html">Ke Dashboard</a>
+                  <button class="btn btn--primary" type="submit">
+                    <i data-lucide="send" aria-hidden="true"></i>Kirim untuk diverifikasi
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

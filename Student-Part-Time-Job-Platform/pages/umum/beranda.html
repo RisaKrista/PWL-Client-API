@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Beranda · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="UMM-01" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="../umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="../mahasiswa/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <section class="hero" aria-labelledby="hero-t">
+        <div class="stack" style="gap:18px;position:relative;z-index:1">
+          <span class="eyebrow" style="color:var(--color-secondary-100)">Khusus mahasiswa aktif D3 · D4 · S1</span>
+          <h1 id="hero-t">Kerja part-time yang menyesuaikan jadwal kuliah</h1>
+          <p>Cari lowongan dari Employer terverifikasi, cocokkan dengan jam kosong Anda, lalu lamar langsung dari satu
+            tempat.</p>
+          <div class="row">
+            <a class="btn btn--primary" href="../mahasiswa/registrasi.html">
+              <i data-lucide="graduation-cap" aria-hidden="true"></i>Daftar sebagai Mahasiswa
+            </a>
+            <a class="btn btn--secondary" href="../employer/registrasi.html">
+              <i data-lucide="building-2" aria-hidden="true"></i>Daftar sebagai Employer
+            </a>
+          </div>
+        </div>
+        <div class="hero__week" aria-label="Ilustrasi jadwal satu minggu">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Sen</th>
+                <th>Sel</th>
+                <th>Rab</th>
+                <th>Kam</th>
+                <th>Jum</th>
+                <th>Sab</th>
+                <th>Min</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Pagi</th>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Siang</th>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td></td>
+                <td class="k"></td>
+                <td class="k"></td>
+                <td class="w"></td>
+                <td class="w"></td>
+              </tr>
+              <tr>
+                <th>Sore</th>
+                <td></td>
+                <td class="w"></td>
+                <td class="k"></td>
+                <td class="w"></td>
+                <td></td>
+                <td class="w"></td>
+                <td class="w"></td>
+              </tr>
+              <tr>
+                <th>Malam</th>
+                <td class="w"></td>
+                <td></td>
+                <td class="w"></td>
+                <td></td>
+                <td class="w"></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="hero__legend">
+            <span>
+              <i style="background:rgba(255,255,255,.28)"></i>Kuliah
+            </span>
+            <span>
+              <i style="background:var(--color-secondary-500)"></i>Slot kerja cocok
+            </span>
+            <span>
+              <i style="background:rgba(255,255,255,.1)"></i>Kosong
+            </span>
+          </div>
+        </div>
+      </section>
+      <section class="grid-4" aria-label="Karakteristik platform">
+        <div class="feature">
+          <span class="feature__icon">
+            <i data-lucide="graduation-cap" aria-hidden="true"></i>
+          </span>
+          <h3>Khusus mahasiswa</h3>
+          <p class="small muted">Hanya mahasiswa aktif yang dapat mengakses dan melamar.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">
+            <i data-lucide="calendar-clock" aria-hidden="true"></i>
+          </span>
+          <h3>Ramah jadwal kuliah</h3>
+          <p class="small muted">Lowongan difilter sesuai availability per hari dan slot jam.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+          </span>
+          <h3>Terverifikasi</h3>
+          <p class="small muted">Mahasiswa dan Employer diverifikasi Admin sebelum bertransaksi.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">
+            <i data-lucide="list" aria-hidden="true"></i>
+          </span>
+          <h3>Informasi berstandar</h3>
+          <p class="small muted">Setiap lowongan memuat lokasi, jadwal, durasi, beban kerja, gaji, dan kriteria.</p>
+        </div>
+      </section>
+      <section class="panel" aria-labelledby="cara-t">
+        <h2 id="cara-t">Cara kerja untuk mahasiswa</h2>
+        <ol class="steps">
+          <li><strong>Verifikasi email kampus</strong>
+            <span class="small muted">Daftar dengan email kampus, lalu unggah KTM dan bukti aktif semester berjalan.
+            </span>
+          </li>
+          <li><strong>Atur availability</strong>
+            <span class="small muted">Tandai slot kosong Senin–Minggu di luar jadwal kuliah.</span>
+          </li>
+          <li><strong>Lamar lowongan</strong>
+            <span class="small muted">Bandingkan lowongan yang cocok, lalu kirim lamaran langsung.</span>
+          </li>
+        </ol>
+      </section>
+      <div data-view="content" hidden></div>
+    </main>
+    <footer class="footer">
+      <div class="footer__inner">
+        <span>Kelompok Agung Sinatrya · Risa Krista Bella · Eddzel Vito Nabila · Cahya Abdan Syakir</span>
+        <span>
+          Pemrograman Web Lanjut · Universitas Widyatama · 2026
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

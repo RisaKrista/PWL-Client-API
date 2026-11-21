@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Kelola Pelamar · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/employer.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-06" data-role="employer">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Employer">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Employer</span>
+        <a class="sidebar__link" href="../employer/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../employer/lowongan-saya.html">
+          <i data-lucide="list" aria-hidden="true"></i>Lowongan Saya
+        </a>
+        <a class="sidebar__link" href="../employer/formulir-lowongan.html">
+          <i data-lucide="plus" aria-hidden="true"></i>Buat Lowongan
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../employer/kelola-pelamar.html#L-001" aria-current="page">
+          <i data-lucide="users" aria-hidden="true"></i>Kelola Pelamar
+        </a>
+        <a class="sidebar__link" href="../employer/verifikasi.html">
+          <i data-lucide="shield-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">LC</span>
+            <div class="user-chip__meta">Lulu Chandra<span>Bimbel Cerdas Prima</span>
+            </div>
+          </div>
+          <span data-me-status></span>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <nav class="breadcrumb">
+                <a href="../employer/lowongan-saya.html">Lowongan Saya</a>
+                <span>/</span>
+                <span aria-current="page">Pelamar</span>
+              </nav>
+              <div class="row">
+                <h1 id="pl-title">Pelamar</h1>
+                <span id="pl-status"></span>
+              </div>
+              <p class="muted small" id="pl-count"></p>
+            </div>
+            <a class="btn btn--ghost" href="../employer/lowongan-saya.html">
+              <i data-lucide="arrow-left" aria-hidden="true"></i>Kembali ke Lowongan Saya
+            </a>
+          </div>
+          <div data-view="content" class="panel panel--flush">
+            <div style="padding:0 16px">
+              <div class="tabs" role="tablist" id="pl-tabs" data-tabs="#pl-table" data-empty="#pl-empty-tab">
+                <button type="button" class="tab" role="tab" data-filter="semua" data-label="Semua"
+                  aria-selected="true">Semua <span class="tab__count">0</span>
+                </button>
+                <button type="button" class="tab" role="tab" data-filter="dikirim" data-label="Dikirim"
+                  aria-selected="false">Dikirim <span class="tab__count">0</span>
+                </button>
+                <button type="button" class="tab" role="tab" data-filter="ditinjau" data-label="Ditinjau"
+                  aria-selected="false">Ditinjau <span class="tab__count">0</span>
+                </button>
+                <button type="button" class="tab" role="tab" data-filter="diterima" data-label="Diterima"
+                  aria-selected="false">Diterima <span class="tab__count">0</span>
+                </button>
+                <button type="button" class="tab" role="tab" data-filter="ditolak" data-label="Ditolak"
+                  aria-selected="false">Ditolak <span class="tab__count">0</span>
+                </button>
+              </div>
+            </div>
+            <div class="table-wrap" id="pl-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Pelamar</th>
+                    <th>Prodi · jenjang</th>
+                    <th>Semester</th>
+                    <th>Kecocokan jadwal</th>
+                    <th>Verifikasi</th>
+                    <th>Status</th>
+                    <th>Dikirim</th>
+                  </tr>
+                </thead>
+                <tbody id="pl-rows"></tbody>
+              </table>
+            </div>
+            <div id="pl-empty-tab" hidden>
+              <div class="empty-state">
+                <p class="empty-state__title">Tidak ada pelamar berstatus <span data-empty-label></span>.</p>
+              </div>
+            </div>
+            <div id="pl-empty" hidden>
+              <div class="empty-state">
+                <div class="empty-state__icon">
+                  <i data-lucide="users" aria-hidden="true"></i>
+                </div>
+                <p class="empty-state__title">Belum ada pelamar untuk lowongan ini.</p>
+              </div>
+            </div>
+            <p class="xs muted" style="padding:12px 20px">
+              <i data-lucide="info" aria-hidden="true"></i> Klik baris untuk membuka detail. Status Dikirim berubah
+              menjadi Ditinjau saat detail dibuka.
+            </p>
+          </div>
+          <dialog class="drawer" id="drawer-pelamar" aria-labelledby="dr-name">
+            <div class="drawer__inner">
+              <div class="drawer__head">
+                <span class="avatar">
+                  <i data-lucide="user" aria-hidden="true"></i>
+                </span>
+                <div style="flex:1;min-width:0">
+                  <h2 id="dr-name" style="font-size:var(--text-lg)"></h2>
+                  <p class="xs muted" id="dr-sub"></p>
+                </div>
+                <button class="btn btn--ghost btn--icon" data-close aria-label="Tutup">
+                  <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="drawer__body" id="dr-body"></div>
+              <div class="drawer__foot">
+                <button class="btn btn--danger" id="dr-reject" data-open="modal-reject">Tolak</button>
+                <button class="btn btn--success" id="dr-accept" data-open="modal-accept">
+                  <i data-lucide="check" aria-hidden="true"></i>Terima
+                </button>
+              </div>
+            </div>
+          </dialog>
+          <dialog class="modal" id="modal-accept" aria-labelledby="modal-accept-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--success">
+                <i data-lucide="circle-check" aria-hidden="true"></i>
+              </span>
+              <h2 id="modal-accept-t" style="font-size:var(--text-lg);padding-top:8px">Terima pelamar?</h2>
+            </div>
+            <div class="modal__body">
+              <p>Terima pelamar ini? Nomor telepon pelamar akan ditampilkan setelah konfirmasi.</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--success" id="do-accept">Terima</button>
+            </div>
+          </dialog>
+          <dialog class="modal" id="modal-reject" aria-labelledby="modal-reject-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--danger">
+                <i data-lucide="triangle-alert" aria-hidden="true"></i>
+              </span>
+              <h2 id="modal-reject-t" style="font-size:var(--text-lg);padding-top:8px">Tolak pelamar?</h2>
+            </div>
+            <div class="modal__body">
+              <p>Tolak pelamar ini? Catatan Anda (opsional) akan terlihat oleh pelamar.</p>
+              <div class="field">
+                <label class="field__label" for="rej-note">Catatan untuk pelamar</label>
+                <textarea class="field__input" id="rej-note" maxlength="300" style="min-height:70px" placeholder="Contoh: Terima kasih, kami mencari kandidat yang tersedia hari Senin."></textarea>
+              </div>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" data-close>Batal</button>
+              <button class="btn btn--danger" id="do-reject">Tolak</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

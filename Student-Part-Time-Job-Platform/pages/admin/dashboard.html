@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Dashboard Admin · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-01" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link sidebar__link--active" href="../admin/dashboard.html" aria-current="page">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../admin/verifikasi-akun.html">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link" href="../admin/moderasi-lowongan.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link" href="../admin/monitoring-eligibilitas.html">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link" href="../admin/perguruan-tinggi.html">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <span class="eyebrow">Admin</span>
+              <h1>Dashboard</h1>
+              <p class="muted">Periode aktif: Semester Ganjil 2026/2027 · verifikasi berlaku sampai 28 Februari 2027</p>
+            </div>
+          </div>
+          <div data-view="content" class="stack" style="gap:20px">
+            <div class="grid-4" id="adm-stats"></div>
+            <div class="grid-2">
+              <section class="panel panel--flush">
+                <div class="panel__head" style="padding:16px 20px 0">
+                  <h2>Verifikasi terlama</h2>
+                  <a class="small" href="../admin/verifikasi-akun.html">Lihat antrean</a>
+                </div>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Pengaju</th>
+                        <th>Diajukan</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="adm-v"></tbody>
+                  </table>
+                </div>
+              </section>
+              <section class="panel panel--flush">
+                <div class="panel__head" style="padding:16px 20px 0">
+                  <h2>Moderasi terlama</h2>
+                  <a class="small" href="../admin/moderasi-lowongan.html">Lihat antrean</a>
+                </div>
+                <div class="table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Lowongan</th>
+                        <th>Diajukan</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="adm-m"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

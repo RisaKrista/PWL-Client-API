@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Registrasi Employer · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/auth.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-01" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="../umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="../mahasiswa/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page page--medium">
+      <div data-flash></div>
+      <div class="panel">
+        <ol class="stepper" aria-label="Langkah">
+          <li class="is-active" aria-current="step">
+            <span>Akun</span>
+          </li>
+          <li class="">
+            <span>Verifikasi email</span>
+          </li>
+          <li class="">
+            <span>Dokumen</span>
+          </li>
+          <li class="">
+            <span>Tinjauan Admin</span>
+          </li>
+        </ol>
+        <div class="row row--between">
+          <div class="stack" style="gap:4px">
+            <h1>Daftar sebagai Employer</h1>
+            <p class="muted small">Untuk UMKM, startup, perusahaan, atau perorangan yang merekrut mahasiswa. <span
+                class="req">*</span> wajib diisi.</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm" id="er-fill">
+            <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+          </button>
+        </div>
+        <div data-view="content">
+          <form id="form-emp-reg" class="form" data-validate>
+            <fieldset class="field" style="border:0;padding:0;margin:0">
+              <legend class="field__label" style="margin-bottom:8px">Tipe Employer <span class="req">*</span>
+              </legend>
+              <div class="radio-cards">
+                <label class="radio-card">
+                  <input type="radio" name="tipe" value="umkm">
+                  <span><b>UMKM</b>
+                    <span class="xs muted">Usaha mikro, kecil, menengah</span>
+                  </span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="tipe" value="startup">
+                  <span><b>Startup</b>
+                    <span class="xs muted">Perusahaan rintisan</span>
+                  </span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="tipe" value="perusahaan" checked>
+                  <span><b>Perusahaan</b>
+                    <span class="xs muted">Badan usaha lain</span>
+                  </span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="tipe" value="perorangan">
+                  <span><b>Perorangan</b>
+                    <span class="xs muted">Pemberi kerja individu</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+            <div class="grid-2">
+              <div class="field" id="er-usaha-field">
+                <label class="field__label" for="er-usaha">Nama usaha/organisasi <span class="req" id="er-usaha-req">*
+                  </span>
+                </label>
+                <input class="field__input" id="er-usaha" name="er-usaha" type="text" required minlength="3"
+                  maxlength="100" placeholder="Contoh: Bimbel Cerdas Prima">
+                <p class="field__hint"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-pj">Nama penanggung jawab <span class="req" aria-hidden="true">*
+                  </span>
+                </label>
+                <input class="field__input" id="er-pj" name="er-pj" type="text" required minlength="3" maxlength="100"
+                  autocomplete="name">
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-jabatan">Jabatan</label>
+                <input class="field__input" id="er-jabatan" name="er-jabatan" type="text" maxlength="50"
+                  placeholder="Contoh: HR Officer">
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-email">Email <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="er-email" name="er-email" type="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-telp">Nomor telepon <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="er-telp" name="er-telp" type="tel" required inputmode="numeric"
+                  data-pattern="^08\d{8,11}$"
+                  data-msg-pattern="Nomor telepon harus diawali 08 dan terdiri atas 10–13 digit."
+                  placeholder="08xxxxxxxxxx">
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-kota">Kota <span class="req" aria-hidden="true">*</span>
+                </label>
+                <select class="field__input" id="er-kota" name="er-kota" required data-msg-required="Pilih kota.">
+                  <option value="">Pilih kota</option>
+<option value="Bandung">Bandung</option>
+<option value="Cimahi">Cimahi</option>
+<option value="Jakarta">Jakarta</option>
+<option value="Bekasi">Bekasi</option>
+<option value="Bogor">Bogor</option>
+<option value="Depok">Depok</option>
+<option value="Tangerang">Tangerang</option>
+<option value="Surabaya">Surabaya</option>
+<option value="Yogyakarta">Yogyakarta</option>
+<option value="Semarang">Semarang</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-password">Kata sandi <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="er-password" name="er-password" type="password" required minlength="8"
+                  autocomplete="new-password"
+                  data-msg-minlength="Kata sandi minimal 8 karakter dan memuat huruf serta angka.">
+              </div>
+              <div class="field">
+                <label class="field__label" for="er-password2">Konfirmasi kata sandi <span class="req"
+                    aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="er-password2" name="er-password2" type="password" required
+                  data-match="er-password" data-msg-match="Konfirmasi kata sandi tidak sama."
+                  autocomplete="new-password">
+              </div>
+            </div>
+            <div class="field">
+              <label class="check">
+                <input type="checkbox" id="er-consent" required
+                  data-msg-required="Persetujuan wajib dicentang untuk melanjutkan.">
+                <span>Saya menyetujui syarat penggunaan dan pemrosesan data sesuai <a href="#" onclick="return false">
+                    Kebijakan Privasi</a>.</span>
+              </label>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit" data-no-loading="1">Daftar</button>
+            <p class="small">Sudah punya akun? <a href="../umum/masuk.html">Masuk</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

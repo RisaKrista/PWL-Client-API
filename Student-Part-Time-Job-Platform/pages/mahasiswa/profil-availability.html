@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Profil & Availability · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-08" data-role="mahasiswa">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link" href="../mahasiswa/cari-lowongan.html">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link" href="../mahasiswa/lamaran-saya.html">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/profil-availability.html" aria-current="page">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link" href="../mahasiswa/status-akses.html">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <div class="page__head">
+        <div>
+          <h1>Profil & Availability</h1>
+          <p class="muted">Availability dipakai untuk filter jadwal dan dibagikan ke Employer saat Anda melamar.</p>
+        </div>
+      </div>
+      <div data-view="content" class="split split--profile">
+        <section class="panel" id="profile" aria-label="Profil"></section>
+        <form id="form-avail" class="panel form" data-validate>
+          <div class="panel__head">
+            <h2>Availability kerja</h2>
+            <div class="row">
+              <button type="button" class="btn btn--ghost btn--sm" id="btn-weekend">Pilih semua akhir pekan</button>
+              <button type="button" class="btn btn--ghost btn--sm" id="btn-clear">Kosongkan</button>
+            </div>
+          </div>
+          <div class="alert alert--info" id="avail-empty" hidden>
+            <i data-lucide="info" aria-hidden="true"></i>
+            <div>Isi availability terlebih dahulu agar filter jadwal dapat digunakan.</div>
+          </div>
+          <div class="field">
+            <span class="field__label sr-only">Slot availability</span>
+            <div data-group-required data-msg="Pilih minimal satu slot waktu.">
+              <div id="avail-grid"></div>
+            </div>
+          </div>
+          <div class="legend">
+            <span>
+              <i style="background:var(--color-primary-600)"></i>Tersedia untuk bekerja
+            </span>
+            <span>
+              <i style="background:var(--color-neutral-100)"></i>Ada kuliah/tidak tersedia
+            </span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="avail-note">Catatan tambahan untuk Employer</label>
+            <textarea class="field__input" id="avail-note" maxlength="200" data-counter style="min-height:70px"></textarea>
+          </div>
+          <p class="small muted">
+            <i data-lucide="info" aria-hidden="true"></i> Perbarui availability setiap awal semester mengikuti jadwal
+            kuliah baru.
+          </p>
+          <div class="row" style="justify-content:flex-end">
+            <a class="btn btn--ghost" href="../mahasiswa/cari-lowongan.html">Kembali ke pencarian</a>
+            <button class="btn btn--primary" type="submit">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Verifikasi Email Employer · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/auth.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="EMP-01B" data-role="publik">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="../umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="../employer/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page page--narrow">
+      <div data-flash></div>
+      <div class="panel">
+        <ol class="stepper" aria-label="Langkah">
+          <li class="is-done">
+            <span>Akun</span>
+          </li>
+          <li class="is-active" aria-current="step">
+            <span>Verifikasi email</span>
+          </li>
+          <li class="">
+            <span>Dokumen</span>
+          </li>
+          <li class="">
+            <span>Tinjauan Admin</span>
+          </li>
+        </ol>
+        <div class="stack" style="gap:6px;text-align:center;justify-items:center">
+          <span class="empty-state__icon">
+            <i data-lucide="inbox" aria-hidden="true"></i>
+          </span>
+          <h1>Cek email Anda</h1>
+          <p class="muted">Kode verifikasi telah dikirim ke <strong
+              id="otp-email"></strong>. Kode berlaku 10 menit.</p>
+        </div>
+        <div data-view="content" class="stack" style="justify-items:center">
+          <div class="field" style="align-items:center">
+            <span class="field__label sr-only">Kode verifikasi</span>
+            <div class="otp">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 2">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 3">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 4">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 5">
+              <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 6">
+            </div>
+          </div>
+          <button class="btn btn--primary" type="button" data-otp-submit style="min-width:220px">Verifikasi</button>
+          <div class="row" style="justify-content:center">
+            <button class="btn btn--ghost btn--sm" type="button" data-otp-resend>Kirim ulang kode</button>
+            <a class="btn btn--ghost btn--sm" href="../employer/registrasi.html">Ubah email</a>
+          </div>
+          <p class="xs muted">Kode berlaku 10 menit. Periksa juga folder spam.</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

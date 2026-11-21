@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Verifikasi Status Mahasiswa · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-03" data-role="mahasiswa">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <div class="navbar__right">
+          <a class="btn btn--ghost btn--sm" href="../umum/masuk.html">Masuk</a>
+          <a class="btn btn--primary btn--sm" href="../mahasiswa/registrasi.html">Daftar</a>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page page--medium">
+      <div data-flash></div>
+      <div class="panel">
+        <ol class="stepper" aria-label="Langkah">
+          <li class="is-done">
+            <span>Akun</span>
+          </li>
+          <li class="is-done">
+            <span>Verifikasi email</span>
+          </li>
+          <li class="is-active" aria-current="step">
+            <span>Data & dokumen</span>
+          </li>
+          <li class="">
+            <span>Tinjauan Admin</span>
+          </li>
+        </ol>
+        <div class="row row--between">
+          <div class="stack" style="gap:4px">
+            <h1>Verifikasi status mahasiswa</h1>
+            <p class="muted small">Email kampus membuktikan Anda punya akun kampus, tetapi belum membuktikan status
+              aktif semester ini. Admin memeriksa data berikut secara manual.</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm" id="v-fill">
+            <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+          </button>
+        </div>
+      </div>
+      <div data-view="content">
+        <form id="form-verif" class="form" data-validate>
+          <section class="panel">
+            <h2>Data akademik</h2>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field__label" for="v-npm">NPM <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="v-npm" name="v-npm" type="text" required inputmode="numeric"
+                  data-pattern="^\d{8,15}$" data-msg-pattern="NPM hanya boleh berisi angka (8–15 digit)."
+                  placeholder="Contoh: 2410500377">
+                <p class="field__hint" id="v-npm-hint">Hanya angka. Dipakai sebagai pengenal dan pencegah akun ganda.
+                </p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="v-prodi">Program studi <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="v-prodi" name="v-prodi" type="text" required minlength="3"
+                  maxlength="100" placeholder="Contoh: Sistem Informasi">
+              </div>
+              <div class="field">
+                <label class="field__label" for="v-jenjang">Jenjang <span class="req" aria-hidden="true">*</span>
+                </label>
+                <select class="field__input" id="v-jenjang" name="v-jenjang" required
+                  data-msg-required="Pilih jenjang.">
+                  <option value="">Pilih jenjang</option>
+                  <option value="D3">D3</option>
+                  <option value="D4">D4</option>
+                  <option value="S1">S1</option>
+                </select>
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label class="field__label" for="v-semester">Semester saat ini <span class="req" aria-hidden="true">*
+                    </span>
+                  </label>
+                  <input class="field__input" id="v-semester" name="v-semester" type="number" required min="1" max="14"
+                    data-msg-range="Semester harus antara 1 dan 14.">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="v-angkatan">Tahun angkatan <span class="req" aria-hidden="true">*
+                    </span>
+                  </label>
+                  <input class="field__input" id="v-angkatan" name="v-angkatan" type="number" required min="2019"
+                    max="2026" data-msg-range="Tahun angkatan antara 2019 dan 2026.">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Dokumen</h2>
+            <div class="alert alert--info">
+              <i data-lucide="shield-check" aria-hidden="true"></i>
+              <div>NPM dan dokumen hanya dapat dilihat Admin untuk keperluan verifikasi dan tidak pernah ditampilkan
+                kepada Employer.</div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <span class="field__label">Kartu Tanda Mahasiswa (KTM) <span class="req" aria-hidden="true">*</span>
+                </span>
+                <label class="dropzone" for="v-ktm">
+                  <i data-lucide="upload" aria-hidden="true"></i>
+                  <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                  <span class="xs muted">JPG, PNG, atau PDF · maks. 2 MB</span>
+                  <input type="file" id="v-ktm" name="v-ktm" accept=".jpg,.jpeg,.png,.pdf" required
+                    aria-label="Kartu Tanda Mahasiswa (KTM)">
+                </label>
+                <div class="dropzone__out"></div>
+                <button type="button" class="btn btn--ghost btn--sm" data-sample="ktm-contoh.jpg"
+                  style="justify-self:start">
+                  <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh (ktm-contoh.jpg)
+                </button>
+              </div>
+              <div class="stack">
+                <div class="field">
+                  <label class="field__label" for="v-jenis">Jenis bukti aktif <span class="req" aria-hidden="true">*
+                    </span>
+                  </label>
+                  <select class="field__input" id="v-jenis" name="v-jenis" required
+                    data-msg-required="Pilih jenis bukti aktif.">
+                    <option value="">Pilih jenis bukti</option>
+                    <option value="krs">KRS semester berjalan</option>
+                    <option value="surat">Surat keterangan aktif kuliah</option>
+                  </select>
+                  <p class="field__hint" id="v-jenis-hint">Bukti pembayaran UKT tidak diterima karena memuat data
+                    keuangan pribadi.</p>
+                </div>
+                <div class="field">
+                  <span class="field__label">File bukti aktif <span class="req" aria-hidden="true">*</span>
+                  </span>
+                  <label class="dropzone" for="v-bukti">
+                    <i data-lucide="upload" aria-hidden="true"></i>
+                    <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                    <span class="xs muted">JPG, PNG, atau PDF · maks. 2 MB</span>
+                    <input type="file" id="v-bukti" name="v-bukti" accept=".jpg,.jpeg,.png,.pdf" required
+                      aria-label="File bukti aktif">
+                  </label>
+                  <div class="dropzone__out"></div>
+                  <button type="button" class="btn btn--ghost btn--sm" data-sample="krs-ganjil-2026.pdf"
+                    style="justify-self:start">
+                    <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh (krs-ganjil-2026.pdf)
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="check">
+                <input type="checkbox" id="v-asli" name="v-asli" required
+                  data-msg-required="Pernyataan keaslian data wajib dicentang.">
+                <span>Saya menyatakan data dan dokumen yang diunggah benar dan milik saya sendiri.</span>
+              </label>
+            </div>
+            <div class="row" style="justify-content:flex-end">
+              <button class="btn btn--primary" type="submit">
+                <i data-lucide="send" aria-hidden="true"></i>Kirim untuk diverifikasi
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

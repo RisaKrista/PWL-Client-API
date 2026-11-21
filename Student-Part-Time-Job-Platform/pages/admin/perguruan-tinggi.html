@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Perguruan Tinggi · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/admin.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="ADM-06" data-role="admin">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Menu Admin">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <span class="sidebar__label">Admin</span>
+        <a class="sidebar__link" href="../admin/dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>Dashboard
+        </a>
+        <a class="sidebar__link" href="../admin/verifikasi-akun.html">
+          <i data-lucide="badge-check" aria-hidden="true"></i>Verifikasi Akun
+        </a>
+        <a class="sidebar__link" href="../admin/moderasi-lowongan.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>Moderasi Lowongan
+        </a>
+        <a class="sidebar__link" href="../admin/monitoring-eligibilitas.html">
+          <i data-lucide="calendar-clock" aria-hidden="true"></i>Monitoring Eligibilitas
+        </a>
+        <a class="sidebar__link sidebar__link--active" href="../admin/perguruan-tinggi.html" aria-current="page">
+          <i data-lucide="school" aria-hidden="true"></i>Perguruan Tinggi
+        </a>
+        <div class="sidebar__foot">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">DA</span>
+            <div class="user-chip__meta">Dimas Aditya<span>Admin platform</span>
+            </div>
+          </div>
+          <a class="sidebar__link" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </div>
+      </aside>
+      <div class="shell__main">
+        <header class="topbar">
+          <button class="btn btn--ghost btn--icon topbar__toggle" type="button" aria-label="Buka menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+          <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+          </a>
+        </header>
+        <main id="main" class="page ">
+          <div data-flash></div>
+          <div class="page__head">
+            <div>
+              <h1>Perguruan Tinggi</h1>
+              <p class="muted">Daftar kampus dan domain email yang diterima saat registrasi Mahasiswa.</p>
+            </div>
+          </div>
+          <div data-view="content" class="stack" style="gap:20px">
+            <form id="form-pt" class="panel form" data-validate novalidate>
+              <div class="panel__head">
+                <h2 id="pt-form-title">Tambah perguruan tinggi</h2>
+                <div class="row">
+                  <button class="btn btn--ghost btn--sm" type="button" id="pt-batal" hidden>Batal</button>
+                  <button class="btn btn--primary btn--sm" type="submit" id="pt-simpan">
+                    <i data-lucide="plus" aria-hidden="true"></i>Tambah
+                  </button>
+                </div>
+              </div>
+              <div class="grid-4">
+                <div class="field" style="grid-column:span 2">
+                  <label class="field__label" for="pt-nama">Nama perguruan tinggi <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="pt-nama" name="pt-nama" type="text" required minlength="3" maxlength="150"
+                    placeholder="Universitas Widyatama">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="pt-singkatan">Singkatan</label>
+                  <input class="field__input" id="pt-singkatan" name="pt-singkatan" type="text" maxlength="30" placeholder="UTama">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="pt-jenis">Jenis <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <select class="field__input" id="pt-jenis" name="pt-jenis" required>
+                    <option value="negeri">Negeri (PTN)</option>
+                    <option value="swasta" selected>Swasta (PTS)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="pt-domain">Domain email kampus <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input class="field__input" id="pt-domain" name="pt-domain" type="text" required maxlength="255"
+                  placeholder="widyatama.ac.id" aria-describedby="pt-domain-hint">
+                <p class="field__hint" id="pt-domain-hint">Tanpa @. Pisahkan dengan koma bila lebih dari satu. Subdomain otomatis
+                  diterima: ugm.ac.id juga menerima @mail.ugm.ac.id.</p>
+              </div>
+            </form>
+            <section class="panel panel--flush">
+              <div class="panel__head" style="padding:16px 20px 0">
+                <h2>Daftar (<span id="pt-count">0</span>)</h2>
+                <form class="row" id="pt-filter">
+                  <input class="field__input" style="width:auto;min-height:36px" type="search" id="pt-q" placeholder="Cari nama/domain"
+                    aria-label="Cari">
+                  <select class="field__input" id="pt-jenis-filter" style="width:auto;min-height:36px" aria-label="Jenis">
+                    <option value="">Semua</option>
+                    <option value="negeri">Negeri</option>
+                    <option value="swasta">Swasta</option>
+                  </select>
+                  <button class="btn btn--secondary btn--sm" type="submit">Cari</button>
+                </form>
+              </div>
+              <div id="pt-empty" hidden></div>
+              <div class="table-wrap" style="margin-top:12px" id="pt-table">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Perguruan tinggi</th>
+                      <th>Jenis</th>
+                      <th>Domain email</th>
+                      <th class="tnum">Mahasiswa</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="pt-rows"></tbody>
+                </table>
+              </div>
+              <p class="xs muted" style="padding:10px 20px 16px">Data awal: 10 PTN dan 10 PTS teratas versi Webometrics Ranking Web of
+                Universities, edisi Januari 2026, ditambah Universitas Widyatama. Domain diambil dari situs resmi tiap kampus; domain
+                email mahasiswa yang spesifik perlu dicek ke kampus masing-masing.</p>
+            </section>
+          </div>
+          <dialog class="modal" id="modal-hapus-pt" aria-labelledby="modal-hapus-pt-t">
+            <div class="modal__header">
+              <span class="modal__icon modal__icon--danger">
+                <i data-lucide="trash-2" aria-hidden="true"></i>
+              </span>
+              <h2 id="modal-hapus-pt-t" style="font-size:var(--text-lg);padding-top:8px">Hapus perguruan tinggi?</h2>
+            </div>
+            <div class="modal__body">
+              <p id="hapus-pt-text">Hapus perguruan tinggi ini?</p>
+            </div>
+            <div class="modal__footer">
+              <button class="btn btn--ghost" type="button" data-close>Batal</button>
+              <button class="btn btn--danger" type="button" id="do-hapus-pt">Hapus</button>
+            </div>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

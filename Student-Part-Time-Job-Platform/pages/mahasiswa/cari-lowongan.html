@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Cari Lowongan · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-04" data-role="mahasiswa" data-states="reminder">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/cari-lowongan.html" aria-current="page">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link" href="../mahasiswa/lamaran-saya.html">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link" href="../mahasiswa/profil-availability.html">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link" href="../mahasiswa/status-akses.html">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <div class="alert alert--warning" data-show-status="pending">
+        <i data-lucide="clock" aria-hidden="true"></i>
+        <div>Akun Anda menunggu verifikasi Admin. Anda dapat mencari lowongan, tetapi belum dapat melamar.</div>
+        <a class="btn btn--sm btn--secondary" href="../mahasiswa/status-akses.html">Lihat status</a>
+      </div>
+      <div data-state-view="reminder" hidden class="alert alert--warning">
+        <i data-lucide="calendar-clock" aria-hidden="true"></i>
+        <div>Masa verifikasi berakhir dalam 14 hari. Unggah bukti aktif semester berikutnya agar akses melamar tidak
+          terputus.</div>
+        <a class="btn btn--sm btn--secondary" href="../mahasiswa/status-akses.html#reminder">Verifikasi ulang</a>
+      </div>
+      <div class="page__head">
+        <div>
+          <h1>Cari Lowongan</h1>
+          <p class="muted">Part-time dan proyek pendek dari Employer terverifikasi.</p>
+        </div>
+      </div>
+      <form id="search-form" class="row" role="search" style="flex-wrap:nowrap">
+        <label class="sr-only" for="f-q">Kata kunci</label>
+        <div class="input-prefix" style="flex:1;min-width:0">
+          <span>
+            <i data-lucide="search" aria-hidden="true"></i>
+          </span>
+          <input class="field__input" id="f-q" type="search" maxlength="100"
+            placeholder="Posisi, Employer, atau kata kunci (mis. tutor)">
+        </div>
+        <button class="btn btn--primary" type="submit">Cari</button>
+        <button class="btn btn--secondary filter-open" type="button" style="display:none" aria-expanded="false">
+          <i data-lucide="sliders-horizontal" aria-hidden="true"></i>Filter
+        </button>
+      </form>
+      <div data-view="content">
+        <div class="split split--filter">
+          <aside class="panel filter-panel sticky" aria-label="Filter lowongan">
+            <form id="filter-form" class="form" onsubmit="return false">
+              <div class="field">
+                <label class="field__label" for="f-lokasi">Lokasi</label>
+                <select class="field__input" id="f-lokasi"></select>
+              </div>
+              <fieldset class="field" style="border:0;padding:0;margin:0">
+                <legend class="field__label" style="margin-bottom:6px">Jenis kerja</legend>
+                <div class="checks">
+                  <label class="check">
+                    <input type="checkbox" name="f-jenis" value="part_time"> Part-time
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="f-jenis" value="freelance_proyek"> Freelance-proyek
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="field" style="border:0;padding:0;margin:0">
+                <legend class="field__label" style="margin-bottom:6px">Sistem kerja</legend>
+                <div class="checks">
+                  <label class="check">
+                    <input type="checkbox" name="f-sistem" value="onsite"> On-site
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="f-sistem" value="hybrid"> Hybrid
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="f-sistem" value="remote"> Remote
+                  </label>
+                </div>
+              </fieldset>
+              <hr class="divider">
+              <label class="toggle">
+                <input type="checkbox" id="f-match" checked>
+                <span><strong>Hanya yang cocok dengan availability saya</strong><br>
+                  <span class="xs muted">Semua slot kerja harus ada di availability Anda.</span>
+                </span>
+              </label>
+              <div class="stack" style="gap:6px">
+                <div class="row row--between">
+                  <span class="field__label">Availability saya</span>
+                  <a class="small" href="../mahasiswa/profil-availability.html">Ubah</a>
+                </div>
+                <div id="mini-avail"></div>
+              </div>
+              <button type="button" class="btn btn--ghost btn--sm" data-reset-filter>
+                <i data-lucide="refresh-cw" aria-hidden="true"></i>Reset filter
+              </button>
+            </form>
+          </aside>
+          <section class="stack" aria-labelledby="hasil-t" style="min-width:0">
+            <div class="row row--between">
+              <h2 id="hasil-t" class="sr-only">Hasil pencarian</h2>
+              <p id="job-count" class="small muted" aria-live="polite"></p>
+              <label class="row small" for="f-sort" style="gap:6px">Urutkan <select id="f-sort" class="field__input"
+                  style="width:auto;min-height:36px;padding:4px 10px">
+                  <option value="terbaru">Terbaru</option>
+                  <option value="gaji">Gaji tertinggi</option>
+                  <option value="batas">Batas lamaran terdekat</option>
+                </select>
+              </label>
+            </div>
+            <div id="job-list" class="job-list"></div>
+            <div id="job-empty" class="panel" hidden>
+              <div class="empty-state">
+                <div class="empty-state__icon">
+                  <i data-lucide="search-x" aria-hidden="true"></i>
+                </div>
+                <p class="empty-state__title">Tidak ada lowongan yang sesuai</p>
+                <p>Tidak ada lowongan yang sesuai dengan filter dan availability Anda. Coba ubah filter atau perbarui
+                  availability.</p>
+                <div class="row">
+                  <button type="button" class="btn btn--secondary" data-reset-filter>Reset filter</button>
+                  <a class="btn btn--primary" href="../mahasiswa/profil-availability.html">Ubah availability</a>
+                </div>
+              </div>
+            </div>
+            <nav class="pagination" id="job-pagination" aria-label="Halaman hasil">
+              <button class="pagination__item" disabled>‹ Sebelumnya</button>
+              <button class="pagination__item pagination__item--active" aria-current="page">1</button>
+              <button class="pagination__item" disabled>Berikutnya ›</button>
+            </nav>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

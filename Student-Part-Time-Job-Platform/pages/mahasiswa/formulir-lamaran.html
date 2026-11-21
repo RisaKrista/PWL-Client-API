@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Formulir Lamaran · Student Part-Time Job Platform</title>
+    <link rel="stylesheet" href="../../assets/css/fonts.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="../../assets/js/lucide.min.js"></script>
+    <script src="../../src/api.js" defer></script>
+    <script src="../../src/core/utils.js" defer></script>
+    <script src="../../src/core/ui.js" defer></script>
+    <script src="../../src/core/forms.js" defer></script>
+    <script src="../../src/views/mahasiswa.js" defer></script>
+    <script src="../../src/boot.js" defer></script>
+  </head>
+  <body data-page="MHS-06" data-role="mahasiswa">
+    <a class="skip-link" href="#main">Langsung ke konten</a>
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a class="brand" href="../../index.html" aria-label="Student Part-Time Job Platform — daftar halaman">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Student Part-Time<b>Job Platform</b></span>
+        </a>
+        <nav class="navbar__menu" aria-label="Menu Mahasiswa">
+          <a class="navbar__link navbar__link--active" href="../mahasiswa/cari-lowongan.html" aria-current="page">
+            <i data-lucide="search" aria-hidden="true"></i>Cari Lowongan
+          </a>
+          <a class="navbar__link" href="../mahasiswa/lamaran-saya.html">
+            <i data-lucide="send" aria-hidden="true"></i>Lamaran Saya
+          </a>
+          <a class="navbar__link" href="../mahasiswa/profil-availability.html">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>Profil & Availability
+          </a>
+          <a class="navbar__link" href="../mahasiswa/status-akses.html">
+            <i data-lucide="shield-check" aria-hidden="true"></i>Status Akses
+          </a>
+          <a class="navbar__link hide-desktop" href="../umum/beranda.html" data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>Keluar
+          </a>
+        </nav>
+        <div class="navbar__right">
+          <div class="user-chip">
+            <span class="avatar" aria-hidden="true">RP</span>
+            <div class="user-chip__meta">Reza Pratama<span data-me-status></span>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--icon hide-mobile" href="../umum/beranda.html" aria-label="Keluar" title="Keluar"
+            data-logout>
+            <i data-lucide="log-out" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn--ghost btn--icon navbar__toggle" type="button" aria-label="Buka menu"
+            aria-expanded="false">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="page ">
+      <div data-flash></div>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../mahasiswa/cari-lowongan.html">Cari Lowongan</a>
+        <span>/</span>
+        <a id="lm-back" href="../mahasiswa/detail-lowongan.html">Detail</a>
+        <span>/</span>
+        <span aria-current="page">Lamar</span>
+      </nav>
+      <div class="page__head">
+        <div>
+          <h1 id="lm-title">Lamar</h1>
+          <p class="muted small">Periksa data yang akan dibagikan, lalu kirim lamaran.</p>
+        </div>
+        <button type="button" class="btn btn--ghost btn--sm" id="lm-fill">
+          <i data-lucide="sparkles" aria-hidden="true"></i>Isi data contoh
+        </button>
+      </div>
+      <div data-view="content">
+        <div class="split">
+          <div class="stack" style="gap:16px;min-width:0">
+            <div id="lm-block"></div>
+            <form id="form-lamaran" class="panel form" data-validate>
+              <h2>Lamaran Anda</h2>
+              <div class="field">
+                <label class="field__label" for="lm-pesan">Pesan singkat <span class="req">*</span>
+                </label>
+                <textarea class="field__input" id="lm-pesan" name="lm-pesan" required minlength="50" maxlength="1000" data-counter data-msg-minlength="Pesan minimal 50 karakter." placeholder="Ceritakan pengalaman yang relevan dan kecocokan jadwal Anda."></textarea>
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label class="field__label" for="lm-porto">Tautan portofolio</label>
+                  <input class="field__input" id="lm-porto" name="lm-porto" type="url" placeholder="https://">
+                  <p class="field__hint" id="lm-porto-hint">Opsional. Diawali https://</p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="lm-telp">Nomor telepon <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="field__input" id="lm-telp" name="lm-telp" type="tel" required inputmode="numeric"
+                    data-pattern="^08\d{8,11}$"
+                    data-msg-pattern="Nomor telepon harus diawali 08 dan terdiri atas 10–13 digit."
+                    placeholder="08xxxxxxxxxx">
+                  <p class="field__hint" id="lm-telp-hint">Tampil ke Employer hanya setelah Anda diterima.</p>
+                </div>
+              </div>
+              <div class="field">
+                <span class="field__label">CV (opsional)</span>
+                <label class="dropzone" for="lm-cv">
+                  <i data-lucide="upload" aria-hidden="true"></i>
+                  <span class="small"><strong>Pilih file</strong> atau seret ke sini</span>
+                  <span class="xs muted">PDF · maks. 2 MB</span>
+                  <input type="file" id="lm-cv" name="lm-cv" accept=".pdf" data-ext="\.pdf$"
+                    data-msg-ext="Format CV harus PDF." aria-label="CV (opsional)">
+                </label>
+                <div class="dropzone__out"></div>
+                <button type="button" class="btn btn--ghost btn--sm" data-sample="cv-reza.pdf"
+                  style="justify-self:start">
+                  <i data-lucide="file-text" aria-hidden="true"></i>Pakai file contoh (cv-reza.pdf)
+                </button>
+              </div>
+              <div class="field">
+                <label class="check">
+                  <input type="checkbox" id="lm-consent" name="lm-consent" required
+                    data-msg-required="Persetujuan berbagi data wajib dicentang.">
+                  <span>Saya setuju data di samping dibagikan kepada Employer lowongan ini.</span>
+                </label>
+              </div>
+              <div class="row" style="justify-content:flex-end">
+                <a class="btn btn--ghost" id="lm-cancel" href="../mahasiswa/detail-lowongan.html">Batal</a>
+                <button class="btn btn--primary" type="submit" data-no-loading="1">
+                  <i data-lucide="send" aria-hidden="true"></i>Kirim lamaran
+                </button>
+              </div>
+            </form>
+          </div>
+          <aside class="stack sticky" style="gap:16px">
+            <section class="panel" id="lm-summary" aria-label="Ringkasan lowongan"></section>
+            <section class="panel" aria-labelledby="share-t">
+              <h2 id="share-t" style="font-size:var(--text-md)">Data yang dibagikan ke Employer</h2>
+              <div id="lm-shared" class="stack"></div>
+              <p class="xs muted">
+                <i data-lucide="lock" aria-hidden="true"></i> NPM, email kampus, dan dokumen KTM tidak dibagikan.
+              </p>
+            </section>
+          </aside>
+        </div>
+      </div>
+      <dialog class="modal" id="modal-kirim" aria-labelledby="modal-kirim-t">
+        <div class="modal__header">
+          <span class="modal__icon">
+            <i data-lucide="info" aria-hidden="true"></i>
+          </span>
+          <h2 id="modal-kirim-t" style="font-size:var(--text-lg);padding-top:8px">Kirim lamaran?</h2>
+        </div>
+        <div class="modal__body">
+          <p id="lm-confirm-text"></p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" data-close>Batal</button>
+          <button class="btn btn--primary" id="lm-send">Kirim</button>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>
